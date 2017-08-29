@@ -1,0 +1,64 @@
+general {
+    colors = true
+    interval = 1
+    color_good = "#FFFFFF"
+	# color_good = "#2AA198"
+    color_bad = "#586E75"
+	color_degraded = "#DC322F"
+}
+
+order += "cpu_usage"
+# order += "cpu_temperature 0"
+order += "disk /"
+# order += "disk /home"
+order += "ethernet enp4s0f0"
+# order += "wireless wlp3s0"
+order += "battery 1"
+order += "volume_master"
+order += "tztime local"
+
+cpu_usage {
+    format = "   %usage "
+}
+cpu_temperature 0 {
+    format = "   %degrees °C "
+}
+
+disk "/" {
+    format = "   %avail "
+}
+
+disk "/home" {
+    format = "   /home %avail "
+}
+
+ethernet enp4s0f0 {
+    format_up = "   %ip "
+    format_down = "   no lan "
+}
+
+wireless wlp3s0 {
+    format_up = "   %essid %quality "
+    format_down = "   no wlan "
+}
+
+battery 1 {
+    format = " %status %percentage "
+    format_down = "   no battery "
+    status_chr = ""
+    status_bat = ""
+    status_full = ""
+    path = "/sys/class/power_supply/BAT%d/uevent"
+}
+
+volume master {
+    format = "   %volume "
+    format_muted = "   %volume "
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+tztime local {
+    format = "   %Y-%m-%d    %H:%M"
+}

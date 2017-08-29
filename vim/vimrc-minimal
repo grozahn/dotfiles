@@ -1,0 +1,26 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+filetype plugin on
+filetype plugin indent on
+
+" --Encoding--
+set encoding=utf-8
+set termencoding=utf-8
+
+" --Mapping--
+map <C-t> :tabnew<CR>
+map <C-a> :tabNext<CR>
+map <C-d> :tabclose<CR>
+
+" --Tab key--
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" --Navigation--
+set cursorline
+set number
+
+" --Color scheme--
+syntax enable
+set background=dark
