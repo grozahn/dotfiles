@@ -29,6 +29,9 @@ bindsym $mod+q kill
 bindsym $mod+x exec rofi_run launcher
 bindsym $mod+Tab exec rofi_run windows
 
+# open task manager
+bindsym $mod+Escape exec lxtask
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -111,25 +114,6 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
-
-# open applications on specific workspaces
-assign [class="Chromium"] $workspace2
-assign [class="Firefox"] $workspace2
-assign [class="Midori"] $workspace2
-assign [class="Telegram"] $workspace3
-assign [class="Pcmanfm"] $workspace4
-assign [class="Leafpad"] $workspace5
-assign [class="Mousepad"] $workspace5
-assign [class="Subl3"] $workspace5
-assign [class="Lxmusic"] $workspace7
-assign [class="Spotify"] $workspace7
-assign [class="mpv"] $workspace7
-assign [class="Gnome-mplayer"] $workspace7
-assign [class="Gimp"] $workspace8
-assign [class="Steam"] $workspace9
-assign [title="TLauncher"] $workspace9
-assign [class="wine"] $workspace10
-assign [class="Virtualbox"] $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
