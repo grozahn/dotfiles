@@ -14,8 +14,9 @@ map <C-d> :tabclose<CR>
 
 " --Tab key--
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " --Navigation--
 set cursorline

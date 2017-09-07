@@ -21,8 +21,9 @@ map <C-d> :bdelete<CR>
 
 " --Tab key--
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " --Navigation--
 set cursorline
@@ -64,6 +65,9 @@ Plugin 'SyntaxAttr.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'rking/ag.vim'
 Plugin 'godlygeek/tabular'
+
+" --Clang--
+Plugin 'Rip-Rip/clang_complete'
 
 " --Python--
 Plugin 'klen/python-mode'
