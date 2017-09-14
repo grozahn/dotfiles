@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
+  xkblayout-state set +1
+elif [[ ${BLOCK_BUTTON} -eq 3 ]]; then
+  xkblayout-state set -1
+fi
+
+xkblayout-state print %s

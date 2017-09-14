@@ -1,7 +1,22 @@
 # dotfiles
+My i3 setup
 
-## Screenshot (space and trash blocks were disabled)
-![Screenshot](http://i.imgur.com/1PsQ7HO.jpg)
+# Screenshots (Some blocks were disabled)
 
-## Rofi
-![Rofi](http://i.imgur.com/M8YRYou.png)
+## Arc
+
+### Desktop 
+![arc-desktop](https://github.com/grozahn/dotfiles/blob/master/screenshots/arc-desktop.jpg)
+
+### Rofi
+![arc-rofi](https://github.com/grozahn/dotfiles/blob/master/screenshots/arc-rofi.jpg)
+
+## Numix
+
+### Desktop
+
+![numix-desktop](https://github.com/grozahn/dotfiles/blob/master/screenshots/numix-desktop.jpg)
+
+### Rofi
+
+![numix-rofi](https://github.com/grozahn/dotfiles/blob/master/screenshots/numix-rofi.jpg)

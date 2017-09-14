@@ -1,85 +1,67 @@
 command=$HOME/.config/i3blocks/blocks/$BLOCK_NAME
 separator=false
-separator_block_width=10
+separator_block_width=8
 markup=pango
-border_top=0
-border_bottom=2
+border=#F0544C
 border_left=0
 border_right=0
+border_top=0
+border_bottom=2
 
 [xkeyboard]
 label=
 interval=1
-border=#f7ee7f
 
 [cpu_usage]
 interval=1
 align=center
-border=#f26157
 
 [temperature]
 instance=Core
 label=
 interval=1
-border=#f1a66a
 
 [memory]
 interval=1
-border=#61afef
 
-[space]
-label=
-interval=30
-border=#c678dd
+# [space]
+# label=
+# interval=30
 
-[trash]
-label=
-interval=10
-border=#4ecdc4
+# [trash]
+# label=
+# interval=10
 
 [net]
 interval=1
 align=center
-border=#ee575e
 
 [volume]
 interval=once
 interval=1
 align=center
-border=#f0b747
 
-[microphone]
-label=
-interval=1
-border=#5bbc78
+# [microphone]
+# label=
+# interval=1
 
 [brightness]
 label=
 interval=1
-border=#5293e1
 
 [battery]
 instance=0
 interval=1
-border=#fb9fb1 
 
 [date]
 command=echo -e " $(date '+%a %d %b')\\n "
 interval=30
-border=#9999ff
 
 [time]
 label=
 command=echo $(date '+%H:%M')
 interval=1
-border=#f00bfa
 
 [user]
 label=
 interval=once
-border=#71b9de
-
-[separator]
-command=echo \|
-interval=once
-color=#666666
