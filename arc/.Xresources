@@ -9,5 +9,5 @@ rofi.color-urgent: #2f343f, #f3f4f5, #2f343f, #5294e2, #f3f4f5
 rofi.font:                           Cantarell 11
 rofi.separator-style:                solid
 rofi.hide-scrollbar:                 true
-rofi.lines:							 10
+rofi.lines:                          10
 rofi.bw:                             2

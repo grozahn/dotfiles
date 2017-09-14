@@ -24,13 +24,13 @@ interval=1
 [memory]
 interval=1
 
-# [space]
-# label=
-# interval=30
+[space]
+label=
+interval=30
 
-# [trash]
-# label=
-# interval=10
+[trash]
+label=
+interval=10
 
 [net]
 interval=1
@@ -41,9 +41,9 @@ interval=once
 interval=1
 align=center
 
-# [microphone]
-# label=
-# interval=1
+[microphone]
+label=
+interval=1
 
 [brightness]
 label=
