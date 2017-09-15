@@ -4,8 +4,8 @@
 rofi.color-enabled: true
 rofi.color-window: #2d2d2d, #f0544c, #f0544c
 rofi.color-normal: #2d2d2d, #dddddd, #2d2d2d, #f0544c, #ffffff
-rofi.color-active: #2d2d2d, #f06860, #2d2d2d, #f06860, #dddddd
-rofi.color-urgent: #2d2d2d, #dddddd, #2d2d2d, #f06860, #dddddd
+rofi.color-active: #2d2d2d, #f0544c, #2d2d2d, #f0544c, #ffffff
+rofi.color-urgent: #2d2d2d, #dddddd, #2d2d2d, #f0544c, #ffffff
 rofi.font:                           Cantarell 11
 rofi.separator-style:                solid
 rofi.hide-scrollbar:                 true
