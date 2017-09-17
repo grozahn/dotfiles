@@ -11,11 +11,9 @@ export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
 alias arch-wiki="w3m https://wiki.archlinux.org"
-alias yd="yandex-disk --proxy=https,89.236.17.106,3128"
+alias yd="yandex-disk --proxy=https,95.173.148.158,3129"
 alias update='pacaur -Syu'
 alias zshrc='$EDITOR $HOME/.zshrc'
-alias push='git push'
-alias pull='git pull'
 alias q="exit"
 
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
@@ -50,20 +48,10 @@ recorder() {
 }
 
 vk-cli() {
-  SERVER="89.236.17.106:3128"
+  SERVER="95.173.148.158:3129"
   
   export http_proxy="$SERVER"
   export https_proxy="$SERVER"
 	
   vk
 }
-
-if [[ -x "/usr/bin/neofetch" ]]; then
-  neofetch
-elif [[ -x "/usr/bin/screenfetch" ]]; then
-  screenfetch
-elif [[ -x "/usr/bin/archey3" ]]; then
-  archey3
-else
-  return 127
-fi
