@@ -66,8 +66,9 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'rking/ag.vim'
 Plugin 'godlygeek/tabular'
 
-" --Clang--
+" --C/C++--
 Plugin 'Rip-Rip/clang_complete'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " --Python--
 Plugin 'klen/python-mode'
