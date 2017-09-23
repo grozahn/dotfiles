@@ -38,12 +38,12 @@ mkshellcode() {
 }
 
 recorder() {
-  FILENAME=screencast_$(date +%Y-%m-%d_%H:%M:%S).mkv
+  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mkv
 
   if [[ $1 == '--no-sound' ]]; then
-    ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset ultrafast -crf 0 $FILENAME
+    ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
   elif [[ $1 == '--with-sound' ]]; then 
-    ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset ultrafast -crf 0 $FILENAME
+    ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
   fi  
 }
 

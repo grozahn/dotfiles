@@ -151,7 +151,7 @@ bindsym $mod+r mode "resize"
 set $bg-color 	         #2d2d2d
 set $inactive-bg-color   #2d2d2d
 set $text-color          #ffffff
-set $inactive-text-color #dddddd
+set $inactive-text-color #bbbbbb
 set $urgent-bg-color     #f0544c
 set $separator           #444444
 
