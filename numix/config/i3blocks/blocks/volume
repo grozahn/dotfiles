@@ -2,6 +2,10 @@
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
   pavucontrol -t 3
+elif [[ ${BLOCK_BUTTON} -eq 2 ]]; then
+  amixer -q set Master toggle
+elif [[ ${BLOCK_BUTTON} -eq 3 ]]; then
+  gnome-alsamixer
 fi
 
 color="color='#FFFFFF'"
