@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
-  lxtask
-fi
-
-memory=$(free -h | grep "Mem" | awk '{print $3h}')
-echo " $memory"
