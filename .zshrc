@@ -11,7 +11,7 @@ export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
 alias arch-wiki="w3m https://wiki.archlinux.org"
-alias yd="yandex-disk --proxy=https,185.90.61.18,3128"
+alias yd="yandex-disk --proxy=https,89.236.17.106,3128"
 alias update='pacaur -Syu'
 alias zshrc='$EDITOR $HOME/.zshrc'
 alias q="exit"
@@ -48,7 +48,7 @@ recorder() {
 }
 
 vk-cli() {
-  SERVER="185.90.61.18:3128"
+  SERVER="89.236.17.106:3128"
   
   export http_proxy="$SERVER"
   export https_proxy="$SERVER"
