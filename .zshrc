@@ -1,7 +1,7 @@
 export TERM=xterm-256color
 export ZSH=/home/$USER/.oh-my-zsh
 
-ZSH_THEME="agnoster"
+ZSH_THEME="gentoo"
 
 plugins=(git)
 

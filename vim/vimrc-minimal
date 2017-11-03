@@ -24,4 +24,5 @@ set number
 
 " --Color scheme--
 syntax enable
+colorscheme elflord
 set background=dark

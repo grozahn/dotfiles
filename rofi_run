@@ -1,7 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [[ $1 == "launcher" ]]; then
-    rofi -combi-modi run,drun -show combi -modi combi,ssh 
-elif [[ $1 == "windows" ]]; then
-    rofi -show window 
-fi
+case "$1" in
+    --launcher)
+        rofi -show drun -modi drun,run,ssh
+        ;;
+    --windows)
+        rofi -show window
+        ;;
+esac
+
+exit 0

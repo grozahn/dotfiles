@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
+  pavucontrol -t 3
+elif [[ ${BLOCK_BUTTON} -eq 2 ]]; then
+  amixer -q set Master toggle
+elif [[ ${BLOCK_BUTTON} -eq 3 ]]; then
+  gnome-alsamixer
+fi
+
+color="color='#D3DAE3'"
+volume=$(amixer sget Master | awk -F'[]%[]' '/%/ { print $2}'| head -n 1)
+
+if [[ "$volume" -ge 50 ]] ; then
+    logo=''
+elif [[ "$volume" -ge 25 ]] ; then
+    logo=''
+else
+    logo=''
+fi
+
+[[ "$(pacmd info  | grep headphones | cut -d ')' -f 1 | cut -d ':' -f 3 | head -n 1 | tr -d ' ')" = "yes" ]] && logo=''
+
+[[ -n $(pacmd info  | grep handsfree) ]] && logo=''
+
+if [[ $(amixer sget Master | awk -F'[]%[]' '/%/ { print $5}'| head -n 1) = "off" ]] ; then
+	color="color='#FF3333'"
+fi
+
+echo "<span $color>$logo</span> $volume% "
+
