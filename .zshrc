@@ -34,9 +34,9 @@ prompt_context() {
 
 converter() {
   if [[ $1 == 'ascii' ]]; then
-	  echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
+    echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
   elif [[ $1 == 'hex' ]]; then 
-	  echo -e "$2" | rev
+    echo -e "$2" | rev
   fi
 }
 
