@@ -1,20 +1,10 @@
-export TERM=xterm-256color
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$ZSH/custom
+export BASH_THEME="minimal"
 
-ZSH_THEME="gentoo"
+case "$BASH_THEME" in 
+  minimal) export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
+  gentoo) export PS1='\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;34m\]\W \$\[\e[0m\] ' ;;
+esac
 
-if [[ ! -d $ZSH_CUSTOM/plugins/zsh-autosuggestions ]]; then
-  git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-  clear
-fi
-
-plugins=(git)
-plugins=(zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
-
-export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
 alias arch-wiki="w3m https://wiki.archlinux.org"
@@ -26,17 +16,11 @@ alias q="exit"
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-  fi
-}
-
 converter() {
   if [[ $1 == 'ascii' ]]; then
-	  echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
+    echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
   elif [[ $1 == 'hex' ]]; then 
-	  echo -e "$2" | rev
+    echo -e "$2" | rev
   fi
 }
 

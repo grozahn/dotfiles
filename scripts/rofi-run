@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 case "$1" in
-    --launcher)
-        rofi -show drun -modi drun,run,ssh
+    launcher)
+        rofi -show drun -modi drun,run
         ;;
-    --windows)
+    windows)
         rofi -show window
         ;;
 esac
 
-exit 0
+exit

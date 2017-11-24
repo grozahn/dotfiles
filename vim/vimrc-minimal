@@ -12,17 +12,17 @@ map <C-t> :tabnew<CR>
 map <C-a> :tabNext<CR>
 map <C-d> :tabclose<CR>
 
-" --Tab key--
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
+" --Tab--
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
 
 " --Navigation--
 set cursorline
 set number
 
-" --Color scheme--
+" --Style--
 syntax enable
 colorscheme elflord
 set background=dark
