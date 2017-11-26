@@ -206,7 +206,7 @@ mode "$mode_system" {
 
 # multihead management
 bindsym $mod+d mode "$display_mode"
-set $display_mode Set display mode [l]aptop [h]ome [t]v [p]rojector
+set $display_mode Set display mode: (l)aptop, (h)ome, (t)v, (p)rojector
 mode "$display_mode" {
   bindsym l exec --no-startup-id i3-multihead laptop, mode "default"
   bindsym h exec --no-startup-id i3-multihead home, mode "default"

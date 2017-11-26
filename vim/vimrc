@@ -8,7 +8,6 @@ set encoding=utf-8
 set termencoding=utf-8
 
 " --Airline--
-let g:session_autoload = 'no'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -43,7 +42,7 @@ set expandtab
 set cursorline
 set number
 
-" --Color scheme--
+" --Style--
 syntax enable
 set background=dark
 
@@ -54,29 +53,18 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'scrooloose/nerdtree'
-Plugin 'valloric/youcompleteme'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'matze/vim-move'
-Plugin 'raimondi/delimitmate'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'sirver/ultisnips'
+Plugin 'valloric/youcompleteme'
 Plugin 'honza/vim-snippets'
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-misc'
-Plugin 'SyntaxAttr.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'rking/ag.vim'
+Plugin 'sirver/ultisnips'
+Plugin 'scrooloose/syntastic'
+Plugin 'raimondi/delimitmate'
+Plugin 'matze/vim-move'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
 
 " --C/C++--
 Plugin 'Rip-Rip/clang_complete'
@@ -85,11 +73,5 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " --Python--
 Plugin 'klen/python-mode'
 Plugin 'mitsuhiko/vim-python-combined'
-
-" --JavaScript--
-Plugin 'pangloss/vim-javascript'
-
-" --HTML5--
-Plugin 'othree/html5.vim'
 
 call vundle#end()
