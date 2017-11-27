@@ -3,50 +3,11 @@ filetype off                  " required
 filetype plugin on
 filetype plugin indent on
 
-" --Encoding--
+" Encoding
 set encoding=utf-8
 set termencoding=utf-8
 
-" --Airline--
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" --YouCompleteMe--
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" --UltiSnips--
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" --Python-mode--
-let g:pymode_rope = 0
-let g:pymode_python = 'python3'
-
-" --Mapping--
-map <C-t> :NERDTreeToggle<CR>
-map <C-a> :bnext<CR>
-map <C-d> :bdelete<CR>
-
-" --Tab--
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-
-" --Navigation--
-set cursorline
-set number
-
-" --Style--
-syntax enable
-set background=dark
-
-" --Plugins--
+" Plugins
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -66,12 +27,52 @@ Plugin 'matze/vim-move'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 
-" --C/C++--
-Plugin 'Rip-Rip/clang_complete'
+" C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-" --Python--
+" Python
 Plugin 'klen/python-mode'
 Plugin 'mitsuhiko/vim-python-combined'
 
 call vundle#end()
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Python-mode
+let g:pymode_rope = 0
+let g:pymode_python = 'python3'
+
+" Mapping
+map <C-t> :NERDTreeToggle<CR>
+map <C-a> :bnext<CR>
+map <C-d> :bdelete<CR>
+
+" Tab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Navigation
+set cursorline
+set number
+
+" Style
+syntax enable
+set background=dark
+colorscheme minimalist 
+
