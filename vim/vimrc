@@ -1,31 +1,31 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-filetype plugin on
-filetype plugin indent on
-
-" Encoding
-set encoding=utf-8
-set termencoding=utf-8
-
 " Plugins
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+" UI
+Plugin 'Yggdroot/indentLine'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'ryanoasis/vim-devicons'
+
+" Completion
 Plugin 'valloric/youcompleteme'
 Plugin 'honza/vim-snippets'
 Plugin 'sirver/ultisnips'
+
+" Tools
 Plugin 'scrooloose/syntastic'
 Plugin 'raimondi/delimitmate'
 Plugin 'matze/vim-move'
 Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -35,6 +35,18 @@ Plugin 'klen/python-mode'
 Plugin 'mitsuhiko/vim-python-combined'
 
 call vundle#end()
+
+" ----------------------------
+
+" Common settings
+set nocompatible
+filetype off
+filetype plugin on
+filetype plugin indent on
+
+" Encoding
+set encoding=utf-8
+set termencoding=utf-8
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -56,10 +68,19 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:pymode_rope = 0
 let g:pymode_python = 'python3'
 
+" NERDTree
+let NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeHighlightFolders = 1
+let g:NERDTreeHighlightFoldersFullName = 1 
+
 " Mapping
-map <C-t> :NERDTreeToggle<CR>
-map <C-a> :bnext<CR>
-map <C-d> :bdelete<CR>
+map <F3> :TagbarToggle<CR>
+map <F4> :NERDTreeToggle<CR>
+map <C-a> :bprevious<CR>
+map <C-d> :bnext<CR>
+map <C-s> :bdelete<CR>
 
 " Tab
 set tabstop=2
@@ -76,3 +97,6 @@ syntax enable
 set background=dark
 colorscheme minimalist 
 
+" Other
+let g:tagbar_compact = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '

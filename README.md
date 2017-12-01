@@ -8,3 +8,6 @@ My i3 setup
 
 ## Rofi
 ![rofi](https://github.com/grozahn/dotfiles/blob/master/screenshots/rofi.png)
+
+## Vim 
+![vim](https://github.com/grozahn/dotfiles/blob/master/screenshots/vim.png)
