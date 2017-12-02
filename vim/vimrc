@@ -76,11 +76,11 @@ let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1 
 
 " Mapping
-map <F3> :TagbarToggle<CR>
-map <F4> :NERDTreeToggle<CR>
-map <C-a> :bprevious<CR>
-map <C-d> :bnext<CR>
-map <C-s> :bdelete<CR>
+nmap <F3> :TagbarToggle<CR>
+nmap <F4> :NERDTreeToggle<CR>
+nmap <C-a> :bprevious<CR>
+nmap <C-d> :bnext<CR>
+nmap <C-s> :bdelete<CR>
 
 " Tab
 set tabstop=2
@@ -99,4 +99,5 @@ colorscheme minimalist
 
 " Other
 let g:tagbar_compact = 1
+let g:indentLine_char = '▏'
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '

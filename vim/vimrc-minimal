@@ -1,28 +1,49 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Explorer
+let g:sex_buf = 0
+let g:sex_win = 0
+
+function! ExplorerToggle()
+	if win_gotoid(g:sex_win)
+		hide
+    else
+		try
+			exec "buffer " . g:term_buf
+		catch
+			:Vex 20
+			let g:sex_buf = bufnr("")
+		endtry
+		let g:sex_win = win_getid()
+	endif
+endfunction
+
+" Common settings
+set nocompatible
+filetype off
 filetype plugin on
 filetype plugin indent on
 
-" --Encoding--
+" Encoding
 set encoding=utf-8
 set termencoding=utf-8
 
-" --Mapping--
-map <C-t> :tabnew<CR>
-map <C-a> :tabNext<CR>
-map <C-d> :tabclose<CR>
+" Mapping
+nmap <F4> :call ExplorerToggle()<CR>
+nmap <C-a> :tabprevious<CR>
+nmap <C-d> :tabNext<CR>
+nmap <C-t> :tabnew<CR>
+nmap <C-s> :tabclose<CR>
 
-" --Tab--
+" Tab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 
-" --Navigation--
+" Navigation
 set cursorline
 set number
 
-" --Style--
+" Style
 syntax enable
 colorscheme elflord
 set background=dark
