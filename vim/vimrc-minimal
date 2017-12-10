@@ -1,20 +1,43 @@
-" Explorer
-let g:sex_buf = 0
-let g:sex_win = 0
+" Netrw toggle
+let g:netrw_win = 0
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 
-function! ExplorerToggle()
-	if win_gotoid(g:sex_win)
+function! NetrwToggle()
+	if win_gotoid(g:netrw_win)
+		:q
+		let g:netrw_win = 0
+	else
+		:Lexplore 20
+		let g:netrw_win = win_getid()
+    endif
+endfunction
+
+nnoremap <F3> :call NetrwToggle()<CR>
+
+" Terminal toggle
+let g:term_buf = 0
+let g:term_win = 0
+
+function! TerminalToggle(height)
+	if win_gotoid(g:term_win)
 		hide
-    else
+	else
+		botright new
+		exec "resize " . a:height
 		try
 			exec "buffer " . g:term_buf
 		catch
-			:Vex 20
-			let g:sex_buf = bufnr("")
+			call termopen($SHELL, {"detach": 0})
+			let g:term_buf = bufnr("")
 		endtry
-		let g:sex_win = win_getid()
+		startinsert!
+		let g:term_win = win_getid()
 	endif
 endfunction
+
+nnoremap <F4> :call TerminalToggle(10)<cr>
+tnoremap <F4> <C-\><C-n>:call TerminalToggle(10)<cr>
 
 " Common settings
 set nocompatible
@@ -26,14 +49,13 @@ filetype plugin indent on
 set encoding=utf-8
 set termencoding=utf-8
 
-" Mapping
-nmap <F4> :call ExplorerToggle()<CR>
-nmap <C-a> :tabprevious<CR>
-nmap <C-d> :tabNext<CR>
-nmap <C-t> :tabnew<CR>
-nmap <C-s> :tabclose<CR>
+" Tabs
+nnoremap <C-a> :tabprevious<CR>
+nnoremap <C-d> :tabNext<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-s> :tabclose<CR>
 
-" Tab
+" Tab key
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4

@@ -36,6 +36,30 @@ Plugin 'mitsuhiko/vim-python-combined'
 
 call vundle#end()
 
+" Terminal toggle
+let g:term_buf = 0
+let g:term_win = 0
+
+function! TerminalToggle(height)
+  if win_gotoid(g:term_win)
+    hide
+  else
+    botright new
+    exec "resize " . a:height
+    try
+      exec "buffer " . g:term_buf
+    catch
+      call termopen($SHELL, {"detach": 0})
+      let g:term_buf = bufnr("")
+    endtry
+    startinsert!
+    let g:term_win = win_getid()
+  endif
+endfunction
+
+nnoremap <F4> :call TerminalToggle(10)<cr>
+tnoremap <F4> <C-\><C-n>:call TerminalToggle(10)<cr>
+
 " ----------------------------
 
 " Common settings
@@ -70,19 +94,19 @@ let g:pymode_python = 'python3'
 
 " NERDTree
 let NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1 
 
 " Mapping
-nmap <F3> :TagbarToggle<CR>
-nmap <F4> :NERDTreeToggle<CR>
-nmap <C-a> :bprevious<CR>
-nmap <C-d> :bnext<CR>
-nmap <C-s> :bdelete<CR>
+nnoremap <F2> :TagbarToggle<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
+nnoremap <C-a> :bprevious<CR>
+nnoremap <C-d> :bnext<CR>
+nnoremap <C-s> :bdelete<CR>
 
-" Tab
+" Tab key
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
