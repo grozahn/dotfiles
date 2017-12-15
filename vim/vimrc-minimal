@@ -72,5 +72,5 @@ set number
 
 " Style
 syntax enable
-colorscheme elflord 
+colorscheme elflord
 set background=dark

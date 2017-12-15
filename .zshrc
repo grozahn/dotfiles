@@ -2,7 +2,7 @@ export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$ZSH/custom
 
-ZSH_THEME="gentoo"
+ZSH_THEME="agnoster"
 
 if [[ ! -d $ZSH_CUSTOM/plugins/zsh-autosuggestions ]]; then
   git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -17,11 +17,11 @@ source $ZSH/oh-my-zsh.sh
 export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
-alias arch-wiki="w3m https://wiki.archlinux.org"
-alias yd="yandex-disk --proxy=https,89.236.17.106,3128"
+alias arch-wiki='w3m https://wiki.archlinux.org'
+alias yd='yandex-disk --proxy=https,89.236.17.106,3128'
 alias update='pacaur -Syu'
 alias zshrc='$EDITOR $HOME/.zshrc'
-alias q="exit"
+alias q='exit'
 
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
