@@ -23,41 +23,41 @@ scrollbar = off
 
 [colors]
 # special
-foreground = #adadad
-foreground_bold = #adadad
-cursor = #adadad
-background = #151515
+foreground      = #d3dae3
+foreground_bold = #d3dae3
+cursor          = #d3dae3
+background      = #2f343f
 
 # black
-color0 = #151515
-color8 = #adadad
+color0  = #2f343f
+color8  = #88c0dc
 
 # red
-color1 = #cf6a4c 
-color9 = #cf6a4c 
+color1  = #cc6666
+color9  = #cc6666
 
 # green
-color2 = #99ad6a
-color10 = #99ad6a
+color2  = #66a494
+color10 = #66a494
 
 # yellow
-color3 = #d8ad4c
-color11 = #d8ad4c
+color3  = #f0c674
+color11 = #f0c674
 
 # blue
-color4 = #597bc5
-color12 = #597bc5
+color4  = #93badf
+color12 = #93badf
 
 # magenta
-color5 = #a037b0
-color13 = #a037b0
+color5  = #eb77b3
+color13 = #eb77b3
 
 # cyan
-color6 = #71b9f8
-color14 = #71b9f8
+color6  = #85d1eb
+color14 = #85d1eb
 
 # white
-color7 = #adadad
-color15 = #ffffff
+color7  = #d3dae3
+color15 = #de9f53
 
 # vim: ft=dosini cms=#%s

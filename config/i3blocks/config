@@ -2,7 +2,6 @@ command=$HOME/.config/i3blocks/blocks/$BLOCK_NAME
 separator=false
 separator_block_width=8
 markup=pango
-border=#F0544C
 border_left=0
 border_right=0
 border_top=0
