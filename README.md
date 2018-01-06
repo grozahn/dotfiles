@@ -1,13 +1,13 @@
 # dotfiles
 My i3 setup
 
-# Screenshots (Some blocks were disabled)
+# Screenshots
 
 ## Desktop 
-![desktop](https://github.com/grozahn/dotfiles/blob/master/screenshots/desktop.png)
+![desktop](https://github.com/grozahn/dotfiles/blob/master/screenshots/desktop.jpg)
 
 ## Rofi
-![rofi](https://github.com/grozahn/dotfiles/blob/master/screenshots/rofi.png)
+![rofi](https://github.com/grozahn/dotfiles/blob/master/screenshots/rofi.jpg)
 
 ## Vim 
-![vim](https://github.com/grozahn/dotfiles/blob/master/screenshots/vim.png)
+![vim](https://github.com/grozahn/dotfiles/blob/master/screenshots/vim.jpg)

@@ -29,7 +29,7 @@ mkshellcode() {
 }
 
 recorder() {
-  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mkv
+  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mp4
 
   if [[ $1 == '--no-sound' ]]; then
     ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME

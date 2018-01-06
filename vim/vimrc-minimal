@@ -45,6 +45,7 @@ nnoremap <F3> :call NetrwToggle()<CR>
 
 " Common settings
 set nocompatible
+set noswapfile
 filetype off
 filetype plugin on
 filetype plugin indent on
@@ -68,6 +69,7 @@ set noexpandtab
 
 " Navigation
 set cursorline
+set mouse=a
 set number
 
 " Style

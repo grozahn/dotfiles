@@ -1,29 +1,26 @@
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Fonts
 font pango:monospace 10
-
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Cantarell 10
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Floating modifier
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec lxterminal
+bindsym $mod+Return exec termite 
 
 # kill focused window
 bindsym $mod+q kill
 
 # start program launcher
 bindsym $mod+x exec rofi-run launcher
+
+# open window switcher
 bindsym $mod+Tab exec rofi-run windows
 
 # open task manager
-bindsym $mod+Escape exec lxtask
+bindsym $mod+Escape exec xfce4-taskmanager 
 
 # change focus
 bindsym $mod+j focus left
@@ -113,24 +110,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  # These bindings trigger as soon as you enter the resize mode
-
-  # Pressing left will shrink the window’s width.
-  # Pressing right will grow the window’s width.
-  # Pressing up will shrink the window’s height.
-  # Pressing down will grow the window’s height.
   bindsym j resize shrink width 10 px or 10 ppt
   bindsym k resize grow height 10 px or 10 ppt
   bindsym l resize shrink height 10 px or 10 ppt
   bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-  # same bindings, but for the arrow keys
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
 
-  # back to normal: Enter or Escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -140,8 +129,8 @@ bindsym $mod+r mode "resize"
 # define colors used
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
-set $text-color          #D3DAE3
-set $inactive-text-color #676E7D
+set $text-color          #d3dae3
+set $inactive-text-color #676e7d
 set $urgent-bg-color     #5294e2
 set $separator           #757575
 
@@ -166,26 +155,19 @@ bindsym Print --release exec --no-startup-id i3scrot -f
 bindsym $mod+Print --release exec --no-startup-id i3scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3scrot -s
 
-# i3 bar
-bar {
-  position top
-  tray_output primary
-  status_command i3blocks
-  colors {
-    background $bg-color
-    separator  $separator
-
-    #                  border             background         text
-    focused_workspace  $bg-color          $bg-color          $text-color
-    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-  }
-}
-
-# i3 gaps
+# gaps
 for_window [class="^.*"] border pixel 2
 gaps inner 17
 smart_borders on
+
+# gaps control
+bindsym $mod+Control+plus gaps outer current plus 5
+bindsym $mod+Control+minus gaps outer current minus 5
+
+bindsym $mod+plus gaps inner current plus 5
+bindsym $mod+minus gaps inner current minus 5
+
+bindsym $mod+Control+0 gaps inner current set 17; gaps outer current set 0
 
 # shut down, restart and locking features
 bindsym $mod+Delete mode "$mode_system"
@@ -219,6 +201,7 @@ mode "$display_mode" {
 }
 
 # autostarted applications
+exec --no-startup-id polybar top &
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
