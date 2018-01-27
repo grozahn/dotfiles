@@ -1,0 +1,33 @@
+#!/bin/sh
+
+ACTION=$(printf "pause/play\nnext\nprevious\nshuffle\nrepeat\nopen\nstart\nexit\n" | rofi -dmenu -p 'mocp:')
+
+case $ACTION in
+    'pause/play')
+        mocp -G
+        ;;
+    'next')
+        mocp -f
+        ;;
+    'previous')
+        mocp -r
+        ;;
+    'shuffle')
+        mocp -t shuffle
+        ;;
+    'repeat')
+        mocp -t repeat
+        ;;
+    'open')
+        termite -e mocp
+        ;;
+    'start')
+        mocp -S
+        rofi-mocp
+        ;;
+    'exit')
+        mocp -x
+        ;;
+esac
+
+exit

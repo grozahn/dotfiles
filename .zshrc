@@ -18,7 +18,7 @@ export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
 alias arch-wiki='w3m https://wiki.archlinux.org'
-alias yd='yandex-disk --proxy=https,89.236.17.106,3128'
+alias yd='yandex-disk --proxy=https,163.172.27.213,3128'
 alias update='pacaur -Syu'
 alias zshrc='$EDITOR $HOME/.zshrc'
 alias q='exit'
@@ -34,7 +34,7 @@ prompt_context() {
 
 converter() {
   if [[ $1 == 'ascii' ]]; then
-    echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
+    echo -n "$2" | od -A n -t x1
   elif [[ $1 == 'hex' ]]; then 
     echo -e "$2" | rev
   fi
@@ -55,7 +55,7 @@ recorder() {
 }
 
 vk-cli() {
-  SERVER="89.236.17.106:3128"
+  SERVER="163.172.27.213:3128"
   
   export http_proxy="$SERVER"
   export https_proxy="$SERVER"
@@ -66,13 +66,13 @@ vk-cli() {
 pk () {
   if [ $1 ] ; then
     case $1 in
-      tbz) tar cjvf $2.tar.bz2 $2      ;;
-      tgz) tar czvf $2.tar.gz  $2       ;;
-      tar) tar cpvf $2.tar  $2       ;;
-      bz2) bzip $2 ;;
-      gz)  gzip -c -9 -n $2 > $2.gz ;;
-      zip) zip -r $2.zip $2   ;;
-      7z)  7z a $2.7z $2    ;;
+      tbz) tar cjvf $2.tar.bz2 $2     ;;
+      tgz) tar czvf $2.tar.gz  $2     ;;
+      tar) tar cpvf $2.tar  $2        ;;
+      bz2) bzip $2                    ;;
+      gz)  gzip -c -9 -n $2 > $2.gz   ;;
+      zip) zip -r $2.zip $2           ;;
+      7z)  7z a $2.7z $2              ;;
       *)   echo "'$1' can not be extracted with pk()" ;;
     esac
   else

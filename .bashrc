@@ -8,7 +8,7 @@ esac
 export EDITOR='nvim'
 
 alias arch-wiki='w3m https://wiki.archlinux.org'
-alias yd='yandex-disk --proxy=https,89.236.17.106,3128'
+alias yd='yandex-disk --proxy=https,163.172.27.213,3128'
 alias update='pacaur -Syu'
 alias bashrc='$EDITOR $HOME/.bashrc'
 alias q='exit'
@@ -29,7 +29,7 @@ mkshellcode() {
 }
 
 recorder() {
-  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mp4
+  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mkv
 
   if [[ $1 == '--no-sound' ]]; then
     ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
@@ -39,7 +39,7 @@ recorder() {
 }
 
 vk-cli() {
-  SERVER="89.236.17.106:3128"
+  SERVER="163.172.27.213:3128"
   
   export http_proxy="$SERVER"
   export https_proxy="$SERVER"

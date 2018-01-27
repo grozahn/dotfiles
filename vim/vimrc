@@ -115,7 +115,7 @@ nnoremap <F2> :TagbarToggle<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <C-a> :bprevious<CR>
 nnoremap <C-d> :bnext<CR>
-nnoremap <C-s> :bdelete<CR>
+nnoremap <C-q> :bdelete<CR>
 
 " Tab key
 set tabstop=4

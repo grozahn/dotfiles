@@ -43,6 +43,18 @@ endfunction
 
 nnoremap <F3> :call NetrwToggle()<CR>
 
+" Autocompletion
+function! SuperTab()
+	let l:part = strpart(getline('.'),col('.')-2,1)
+	if (l:part=~'^\W\?$')
+		return "\<Tab>"
+	else
+		return "\<C-n>"
+	endif
+endfunction
+
+inoremap <Tab> <C-R>=SuperTab()<CR>
+
 " Common settings
 set nocompatible
 set noswapfile
@@ -57,9 +69,8 @@ set termencoding=utf-8
 " Tabs
 nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-d> :tabNext<CR>
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-s> :tabclose<CR>
-inoremap <S-Tab> <C-n>
+nnoremap <C-s> :tabnew<CR>
+nnoremap <C-q> :tabclose<CR>
 
 " Tab key
 set tabstop=4
@@ -74,5 +85,5 @@ set number
 
 " Style
 syntax enable
-colorscheme elflord
+colorscheme elflord 
 set background=dark

@@ -1,0 +1,49 @@
+[options]
+allow_bold = true
+# audible_bell = false 
+clickable_url = true
+dynamic_title = true
+font = DejaVuSansMono Nerd Font 9
+# fullscreen = true
+# geometry = 640x480
+# icon_name = terminal
+# mouse_autohide = false
+# scroll_on_output = false
+# scroll_on_keystroke = true
+scrollback_lines = 10000
+# search_wrap = true
+# urgent_on_bell = true
+hyperlinks = true
+browser = chromium 
+cursor_shape = ibeam
+filter_unmatched_urls = true
+# modify_other_keys = false
+# size_hints = false
+scrollbar = off
+
+[colors]
+foreground = #D8DEE9
+background = #2E3440
+foreground_bold = #D8DEE9
+cursor = #D8DEE9
+cursor_foreground = #2E3440
+highlight = #4C566A
+
+color0  = #2E3440
+color1  = #BF616A
+color2  = #A3BE8C
+color3  = #EBCB8B
+color4  = #81A1C1
+color5  = #B48EAD
+color6  = #88C0D0
+color7  = #E5E9F0
+color8  = #4C566A
+color9  = #BF616A
+color10 = #A3BE8C
+color11 = #EBCB8B
+color12 = #81A1C1
+color13 = #B48EAD
+color14 = #8FBCBB
+color15 = #ECEFF4
+
+# vim: ft=dosini cms=#%s

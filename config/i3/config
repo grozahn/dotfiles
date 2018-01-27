@@ -19,6 +19,9 @@ bindsym $mod+x exec rofi-run launcher
 # open window switcher
 bindsym $mod+Tab exec rofi-run windows
 
+# open mocp control panel
+bindsym $mod+p exec rofi-mocp
+
 # open task manager
 bindsym $mod+Escape exec xfce4-taskmanager 
 
@@ -107,6 +110,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# restart polybar
+bindsym $mod+Shift+p exec pkill -USR1 polybar
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -208,3 +213,4 @@ exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
 exec --no-startup-id lxpolkit
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
+# exec --no-startup-id ~/Projects/update_checker/checker.sh &
