@@ -17,11 +17,14 @@ transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
 converter() {
-  if [[ $1 == 'ascii' ]]; then
-    echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g'
-  elif [[ $1 == 'hex' ]]; then 
-    echo -e "$2" | rev
-  fi
+  case $1 in
+    ascii)
+      echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g' 
+    ;;
+    hex)
+      echo -e "$2" | rev
+    ;;
+  esac
 }
 
 mkshellcode() {
@@ -29,13 +32,16 @@ mkshellcode() {
 }
 
 recorder() {
-  FILENAME=$HOME/screencast_$(date +%Y-%m-%d_%H:%M:%S).mkv
+  FILENAME=$HOME/screencast-$(date +%Y-%m-%d_%H.%M.%S).mp4
 
-  if [[ $1 == '--no-sound' ]]; then
-    ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
-  elif [[ $1 == '--with-sound' ]]; then 
-    ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
-  fi  
+  case $1 in
+    --no-sound)
+      ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
+    ;;
+    --with-sound)
+      ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
+    ;;
+  esac
 }
 
 vk-cli() {

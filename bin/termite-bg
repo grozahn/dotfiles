@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+CONFIG=$HOME/.config/termite/config
+BACKGROUND=$(cat $CONFIG | awk '/background/ {print $3}')
+VIM=$(ps -e | grep vim)
+
+if [[ -x /usr/bin/vim ]]; then
+    COLORSCHEME=$(cat $HOME/.vimrc | awk '/^colorscheme/ {print $2}')
+elif [[ -x /usr/bin/nvim ]]; then
+    COLORSCHEME=$(cat $HOME/.config/nvim/init.vim | awk '/^colorscheme/ {print $2}')
+elif [[ -x /usr/bin/nvim && -x /usr/bin/gvim ]]; then
+    COLORSCHEME=$(cat $HOME/.config/nvim/init.vim | awk '/^colorscheme/ {print $2}')
+fi
+
+if [[ $VIM ]]; then
+    case $COLORSCHEME in
+        onedark)
+            sed -i "s/$BACKGROUND/#282c34/g" $CONFIG
+            killall -s USR1 termite
+        ;;
+        Tomorrow)
+            sed -i "s/$BACKGROUND/#fafafa/g" $CONFIG
+            killall -s USR1 termite
+        ;;
+        Tomorrow-Night)
+            sed -i "s/$BACKGROUND/#303030/g" $CONFIG
+            killall -s USR1 termite
+        ;;
+        jellybeans)
+            sed -i "s/$BACKGROUND/#151515/g" $CONFIG
+            killall -s USR1 termite
+        ;;
+    esac
+    
+    sed -i "s/$BACKGROUND/#2f343f/g" $CONFIG
+else
+    sed -i "s/$BACKGROUND/#2f343f/g" $CONFIG
+    killall -s USR1 termite
+fi

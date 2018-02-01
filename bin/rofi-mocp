@@ -1,33 +1,43 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-ACTION=$(printf "pause/play\nnext\nprevious\nshuffle\nrepeat\nopen\nstart\nexit\n" | rofi -dmenu -p 'mocp:')
+get_current_song() {
+    echo -n $(mocp -i |\
+              awk '/^Title/ {sub(/^[ ]*([^ ]+ +){2}/, ""); print $0}' |\
+              sed 's/\&/\&amp\;/g')
+}
+
+ACTION=$(printf "pause/play\nnext\nprevious\nshuffle\nrepeat\nplaylist\nopen\nstart\nexit\n" |\
+        rofi -dmenu -p 'mocp:' -mesg "Current song: $(get_current_song)")
 
 case $ACTION in
     'pause/play')
         mocp -G
-        ;;
+    ;;
     'next')
         mocp -f
-        ;;
+    ;;
     'previous')
         mocp -r
-        ;;
+    ;;
     'shuffle')
         mocp -t shuffle
-        ;;
+    ;;
     'repeat')
         mocp -t repeat
-        ;;
+    ;;
+    'playlist')
+        mocp -p
+    ;;
     'open')
         termite -e mocp
-        ;;
+    ;;
     'start')
         mocp -S
         rofi-mocp
-        ;;
+    ;;
     'exit')
         mocp -x
-        ;;
+    ;;
 esac
 
 exit
