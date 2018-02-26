@@ -18,13 +18,11 @@ export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
 alias arch-wiki='w3m https://wiki.archlinux.org'
-alias yd='yandex-disk --proxy=https,163.172.27.213,3128'
+alias yd='yandex-disk --proxy=https,89.236.17.108,3128'
 alias update='pacaur -Syu'
 alias zshrc='$EDITOR $HOME/.zshrc'
 alias q='exit'
 
-transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
@@ -32,15 +30,40 @@ prompt_context() {
   fi
 }
 
+use_proxy() {
+  export http_proxy=$1
+  export https_proxy=$http_proxy
+  export ftp_proxy=$http_proxy
+  export rsync_proxy=$http_proxy
+  export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+}
+
 converter() {
   case $1 in
     ascii)
       echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g' 
-    ;;
+      ;;
     hex)
       echo -e "$2" | rev
-    ;;
+      ;;
   esac
+}
+
+transfer() {
+  if [ $# -eq 0 ]; then
+    echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"
+    return 1
+  fi 
+  
+  tmpfile=$( mktemp -t transferXXX )
+  if tty -s; then
+    basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
+    curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile
+  else
+    curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile
+  fi
+  
+  cat $tmpfile; rm -f $tmpfile;
 }
 
 mkshellcode() {
@@ -53,18 +76,16 @@ recorder() {
   case $1 in
     --no-sound)
       ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
-    ;;
+      ;;
     --with-sound)
       ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
-    ;;
+      ;;
   esac
 }
 
 vk-cli() {
-  SERVER="163.172.27.213:3128"
-  
-  export http_proxy="$SERVER"
-  export https_proxy="$SERVER"
+  export http_proxy="89.236.17.108:3128"
+  export https_proxy="$http_proxy"
 	
   vk
 }

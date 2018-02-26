@@ -24,7 +24,6 @@ Plugin 'matze/vim-move'
 Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -37,36 +36,36 @@ call vundle#end()
 
 " TrueColor
 if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 if (has("termguicolors"))
-  set termguicolors
+    set termguicolors
 endif
 
 " Terminal toggle
 if has('nvim')
-  let g:term_buf = 0
-  let g:term_win = 0
+    let g:term_buf = 0
+    let g:term_win = 0
 
-  function! TerminalToggle(height)
-    if win_gotoid(g:term_win)
-      hide
-    else
-      botright new
-      exec "resize " . a:height
-      try
-        exec "buffer " . g:term_buf
-      catch
-        call termopen($SHELL, {"detach": 0})
-        let g:term_buf = bufnr("")
-      endtry
-      startinsert!
-      let g:term_win = win_getid()
-    endif
-  endfunction
+    function! TerminalToggle(height)
+        if win_gotoid(g:term_win)
+            hide
+        else
+            botright new
+            exec "resize " . a:height
+            try
+                exec "buffer " . g:term_buf
+            catch
+                call termopen($SHELL, {"detach": 0})
+                let g:term_buf = bufnr("")
+            endtry
+            startinsert!
+            let g:term_win = win_getid()
+        endif
+    endfunction
 
-  nnoremap <F4> :call TerminalToggle(10)<cr>
-  tnoremap <F4> <C-\><C-n>:call TerminalToggle(10)<cr>
+    nnoremap <F4> :call TerminalToggle(10)<CR>
+    tnoremap <F4> <C-\><C-n>:call TerminalToggle(10)<CR>
 endif
 
 " ----------------------------

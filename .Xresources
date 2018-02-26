@@ -10,8 +10,10 @@ rofi.font:                           Cantarell 11
 rofi.separator-style:                solid
 rofi.hide-scrollbar:                 true
 rofi.sidebar-mode:                   true
+rofi.show-icons:                     true
+rofi.width:                          645
+rofi.height:                         315
 rofi.padding:                        15
 rofi.lines:                          10
 rofi.bw:                             2
-rofi.show-icons:                     true
 rofi.drun-icon-theme:                Papirus-Dark

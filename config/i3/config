@@ -25,7 +25,7 @@ bindsym $mod+p exec rofi-mocp
 # open task manager
 bindsym $mod+Escape exec xfce4-taskmanager 
 
-# open change termite background
+# change termite background
 bindsym $mod+t exec termite-bg
 
 # change focus
@@ -209,11 +209,10 @@ mode "$display_mode" {
 }
 
 # autostarted applications
-exec --no-startup-id polybar top &
+exec --no-startup-id polybar laptop
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
 exec --no-startup-id lxpolkit
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
-# exec --no-startup-id ~/Projects/update_checker/checker.sh &
