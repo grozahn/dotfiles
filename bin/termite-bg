@@ -53,6 +53,10 @@ if [[ $VIM ]]; then
             sed -i "s/$BACKGROUND/#2e3440/g" $CONFIG
             killall -s USR1 termite
         ;;
+        deep-space)
+            sed -i "s/$BACKGROUND/#1b202a/g" $CONFIG
+            killall -s USR1 termite
+        ;;
     esac
     
     sed -i "s/$BACKGROUND/#2f343f/g" $CONFIG

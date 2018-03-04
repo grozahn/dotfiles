@@ -67,6 +67,7 @@ recorder() {
 }
 
 vk-cli() {
+  export TERM=xterm
   export http_proxy="89.236.17.108:3128"
   export https_proxy="$http_proxy"
 	

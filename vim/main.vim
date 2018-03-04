@@ -5,7 +5,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " UI
-Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rafi/awesome-vim-colorschemes'
@@ -13,24 +12,28 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'ryanoasis/vim-devicons'
 
 " Completion
-Plugin 'valloric/youcompleteme'
-Plugin 'honza/vim-snippets'
-Plugin 'sirver/ultisnips'
+if has('nvim')
+    Plugin 'Shougo/deoplete.nvim'
+else
+    Plugin 'Shougo/deoplete.nvim'
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Tools
-Plugin 'scrooloose/syntastic'
-Plugin 'raimondi/delimitmate'
+Plugin 'w0rp/ale'
 Plugin 'matze/vim-move'
 Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
+Plugin 'raimondi/delimitmate'
 
-" C++
+" C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'zchee/deoplete-clang'
 
 " Python
-Plugin 'klen/python-mode'
-Plugin 'mitsuhiko/vim-python-combined'
+Plugin 'zchee/deoplete-jedi'
 
 call vundle#end()
 
@@ -73,6 +76,7 @@ endif
 " Common settings
 set nocompatible
 set noswapfile
+set signcolumn=yes
 filetype off
 filetype plugin on
 filetype plugin indent on
@@ -81,25 +85,32 @@ filetype plugin indent on
 set encoding=utf-8
 set termencoding=utf-8
 
+" Deoplete
+set completeopt-=preview
+let g:deoplete#enable_at_startup = 1
+
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" Deoplete Clang
+let g:deoplete#sources#clang#libclang_path='/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header='/lib/clang/'
+
+" ALE
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_delay = 350
+let g:ale_sign_error = '⬥ '
+let g:ale_sign_warning = '⬥ '
+
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
-" YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" Python-mode
-let g:pymode_rope = 0
-let g:pymode_python = 'python3'
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -130,10 +141,10 @@ set number
 " Style
 syntax enable
 set background=dark
-colorscheme nord 
+colorscheme deep-space 
 
 " Other
 let g:tagbar_compact = 1
-let g:indentLine_char = '▏'
+" let g:indentLine_char = '▏'
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 

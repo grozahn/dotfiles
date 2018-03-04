@@ -72,7 +72,7 @@ mkshellcode() {
 
 recorder() {
   FILENAME=$HOME/screencast-$(date +%Y-%m-%d_%H.%M.%S).mp4
-
+  COMPTONRC=$HOME/.config/i3/compton.conf
   case $1 in
     --no-sound)
       ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
@@ -84,6 +84,7 @@ recorder() {
 }
 
 vk-cli() {
+  export TERM=xterm
   export http_proxy="89.236.17.108:3128"
   export https_proxy="$http_proxy"
 	

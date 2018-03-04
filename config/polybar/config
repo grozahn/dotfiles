@@ -15,23 +15,20 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
-line-color = ${colors.foreground} 
-
 padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
+font-0 = fixed:pixelsize=10;2
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Cantarell:pixelsize=10;1
-font-3 = FontAwesome:pixelsize=10;0
+font-3 = FontAwesome:pixelsize=10;1
 
 modules-left = i3
-modules-center = xwindow 
-modules-right = xkeyboard cpu temperature memory filesystem wlan eth xbacklight volume battery date
+modules-center = xwindow
+modules-right = xkeyboard cpu temperature memory wlan volume battery date
 
 tray-position = right
 tray-padding = 2
@@ -46,15 +43,12 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.foreground}
 
 label-layout = %layout%
-label-layout-underline = ${colors.foreground}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.background}
-label-indicator-underline = ${colors.foreground}
 
 [module/filesystem]
 type = internal/fs
@@ -64,11 +58,9 @@ mount-0 = /home
 
 label-mounted =  %percentage_used%%
 label-mounted-foreground = ${colors.foreground}
-label-mounted-underline = ${colors.foreground}
 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.alert}
-label-unmounted-underline = ${colors.alert}
 
 [module/i3]
 type = internal/i3
@@ -105,14 +97,12 @@ card = intel_backlight
 
 format = <label>
 label =  %percentage%%
-format-underline = ${colors.foreground}
 
 [module/cpu]
 type = internal/cpu
 interval = 1
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground}
 label = %percentage%%
 
 [module/memory]
@@ -120,7 +110,6 @@ type = internal/memory
 interval = 1
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground}
 label = %percentage_used%%
 
 [module/wlan]
@@ -130,12 +119,10 @@ interval = 3
 
 format-connected = <label-connected>
 format-connected-foreground = ${colors.foreground} 
-format-connected-underline = ${colors.foreground}
 label-connected =  %signal%%
 
 format-disconnected =   
 format-disconnected-foreground = ${colors.alert} 
-format-disconnected-underline = ${self.format-disconnected-foreground}
 
 [module/eth]
 type = internal/network
@@ -144,12 +131,10 @@ interval = 3
 
 format-connected = <label-connected>
 format-connected-foreground = ${colors.foreground}
-format-connected-underline = ${colors.foreground}
 label-connected =  %local_ip%
 
 format-disconnected =  
 format-disconnected-foreground = ${colors.alert}
-format-disconnected-underline = ${self.format-disconnected-foreground}
 
 [module/date]
 type = internal/date
@@ -159,20 +144,17 @@ date-alt = " %A, %d %B"
 label = %date% %time%
 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.foreground}
 
 [module/volume]
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-underline = ${colors.foreground}
 
 label-volume = %percentage%%
 label-volume-foreground = ${colors.foreground}
 
 label-muted =  %percentage%%
 label-muted-foreground = ${colors.alert}
-label-muted-underline = ${colors.alert} 
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -188,14 +170,11 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.foreground}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " " 
 format-full-prefix-foreground = ${colors.foreground}
-format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -218,9 +197,7 @@ thermal-zone = 0
 warn-temperature = 70
 
 format = <label>
-format-underline = ${colors.foreground} 
 format-warn = <label-warn>
-format-warn-underline = ${colors.alert} 
 
 label =  %temperature%
 label-warn =  %temperature%
