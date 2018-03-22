@@ -7,6 +7,7 @@ esac
 
 export EDITOR='nvim'
 
+alias adb-screencast='adb exec-out screenrecord --output-format=h264 - | mpv -'
 alias arch-wiki='w3m https://wiki.archlinux.org'
 alias yd='yandex-disk --proxy=https,89.236.17.108,3128'
 alias update='pacaur -Syu'

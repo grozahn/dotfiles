@@ -145,6 +145,5 @@ colorscheme deep-space
 
 " Other
 let g:tagbar_compact = 1
-" let g:indentLine_char = '▏'
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 

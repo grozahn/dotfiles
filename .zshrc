@@ -17,6 +17,7 @@ source $ZSH/oh-my-zsh.sh
 export DEFAULT_USER=$USER
 export EDITOR='nvim'
 
+alias adb-screencast='adb exec-out screenrecord --output-format=h264 - | mpv -'
 alias arch-wiki='w3m https://wiki.archlinux.org'
 alias yd='yandex-disk --proxy=https,89.236.17.108,3128'
 alias update='pacaur -Syu'
@@ -72,7 +73,6 @@ mkshellcode() {
 
 recorder() {
   FILENAME=$HOME/screencast-$(date +%Y-%m-%d_%H.%M.%S).mp4
-  COMPTONRC=$HOME/.config/i3/compton.conf
   case $1 in
     --no-sound)
       ffmpeg -f x11grab -r 60 -s 1366x768 -i :0.0 -c:v libx264 -preset superfast -crf 0 $FILENAME
