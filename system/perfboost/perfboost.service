@@ -1,0 +1,9 @@
+[Unit]
+Description=Script to make better performance
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/perfboost
+
+[Install]
+WantedBy=multi-user.target

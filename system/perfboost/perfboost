@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo deadline > /sys/block/sda/queue/scheduler
+governor -s performance

@@ -34,6 +34,7 @@ Plugin 'zchee/deoplete-clang'
 
 " Python
 Plugin 'zchee/deoplete-jedi'
+Plugin 'python-mode/python-mode'
 
 call vundle#end()
 
@@ -145,5 +146,6 @@ colorscheme deep-space
 
 " Other
 let g:tagbar_compact = 1
+" let g:indentLine_char = '▏'
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 

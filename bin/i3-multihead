@@ -3,6 +3,8 @@
 case "$1" in
     laptop)
         xrandr --output LVDS1 --auto --primary --output VGA1 --off
+        kill -9 $(pidof polybar)
+        polybar laptop
         nitrogen --restore
     ;;
     home)
