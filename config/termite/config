@@ -1,61 +1,61 @@
 [options]
-allow_bold = true
-# audible_bell = false 
-clickable_url = true
-dynamic_title = true
-# font = Iosevka Nerd Font Mono 9
-font = DejaVuSansMono Nerd Font 9
-# fullscreen = true
-# geometry = 640x480
-icon_name = terminal
-scrollback_lines = 10000
-# search_wrap = true
-# urgent_on_bell = true
-hyperlinks = true
-browser = chromium 
-cursor_shape = ibeam
-filter_unmatched_urls = true
-# modify_other_keys = false
-# size_hints = false
-scrollbar = off
+    allow_bold = true
+    # audible_bell = false 
+    clickable_url = true
+    dynamic_title = true
+    # font = Fura Code Nerd Font 9
+    font = Hack Nerd Font 9
+    # fullscreen = true
+    # geometry = 640x480
+    icon_name = terminal
+    scrollback_lines = 10000
+    # search_wrap = true
+    # urgent_on_bell = true
+    hyperlinks = true
+    browser = chromium 
+    cursor_shape = ibeam
+    filter_unmatched_urls = true
+    # modify_other_keys = false
+    # size_hints = false
+    scrollbar = off
 
 [colors]
-# special
-foreground      = #d3dae3
-foreground_bold = #d3dae3
-cursor          = #d3dae3
-background      = #2f343f
-
-# black
-color0  = #2f343f
-color8  = #88c0dc
-
-# red
-color1  = #cc6666
-color9  = #cc6666
-
-# green
-color2  = #66a494
-color10 = #66a494
-
-# yellow
-color3  = #f0c674
-color11 = #f0c674
-
-# blue
-color4  = #93badf
-color12 = #93badf
-
-# magenta
-color5  = #eb77b3
-color13 = #eb77b3
-
-# cyan
-color6  = #85d1eb
-color14 = #85d1eb
-
-# white
-color7  = #d3dae3
-color15 = #de9f53
+    # special
+    foreground      = #c5c8c6
+    foreground_bold = #c5c8c6
+    cursor          = #c5c8c6
+    background      = #1d1f21
+    
+    # black
+    color0  = #1d1f21
+    color8  = #969896
+    
+    # red
+    color1  = #cc6666
+    color9  = #cc6666
+    
+    # green
+    color2  = #b5bd68
+    color10 = #b5bd68
+    
+    # yellow
+    color3  = #f0c674
+    color11 = #f0c674
+    
+    # blue
+    color4  = #81a2be
+    color12 = #81a2be
+    
+    # magenta
+    color5  = #b294bb
+    color13 = #b294bb
+    
+    # cyan
+    color6  = #8abeb7
+    color14 = #8abeb7
+    
+    # white
+    color7  = #c5c8c6
+    color15 = #ffffff
 
 # vim: ft=dosini cms=#%s

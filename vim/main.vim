@@ -1,4 +1,5 @@
 " Plugins
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -8,17 +9,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rafi/awesome-vim-colorschemes'
-Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'ryanoasis/vim-devicons'
 
 " Completion
-if has('nvim')
-    Plugin 'Shougo/deoplete.nvim'
-else
-    Plugin 'Shougo/deoplete.nvim'
-    Plugin 'roxma/nvim-yarp'
-    Plugin 'roxma/vim-hug-neovim-rpc'
-endif
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'andreyorst/SimpleSnippets.vim'
+Plugin 'andreyorst/SimpleSnippets-snippets'
 
 " Tools
 Plugin 'w0rp/ale'
@@ -37,14 +33,6 @@ Plugin 'zchee/deoplete-jedi'
 Plugin 'python-mode/python-mode'
 
 call vundle#end()
-
-" TrueColor
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-    set termguicolors
-endif
 
 " Terminal toggle
 if has('nvim')
@@ -75,12 +63,11 @@ endif
 " ----------------------------
 
 " Common settings
-set nocompatible
 set noswapfile
 set signcolumn=yes
-filetype off
-filetype plugin on
+
 filetype plugin indent on
+autocmd FileType make setlocal noexpandtab
 
 " Encoding
 set encoding=utf-8
@@ -106,12 +93,30 @@ let g:deoplete#sources#clang#clang_header='/lib/clang/'
 " ALE
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_delay = 350
-let g:ale_sign_error = '⬥ '
+let g:ale_sign_error = '✖ '
 let g:ale_sign_warning = '⬥ '
+
+" VaivSnippets
+let g:SimpleSnippets_dont_remap_tab = 1
+function! ExpandOrClosePopup()
+  if SimpleSnippets#isExpandableOrJumpable()
+    return "\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>"
+  else
+    let close_popup = deoplete#close_popup()
+    return close_popup
+  endif
+endfunction
+
+inoremap <silent><expr><Tab> pumvisible() ? "\<c-n>" : SimpleSnippets#isExpandableOrJumpable() ? "\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>" : "\<Tab>"
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<c-p>" : SimpleSnippets#isJumpable() ? "\<esc>:call SimpleSnippets#jumpToLastPlaceholder()\<Cr>" : "\<S-Tab>"
+snoremap <silent><expr><Tab> SimpleSnippets#isExpandableOrJumpable() ? "\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>" : "\<Tab>"
+snoremap <silent><expr><S-Tab> SimpleSnippets#isJumpable() ? "\<Esc>:call SimpleSnippets#jumpToLastPlaceholder()\<Cr>" : "\<S-Tab>"
+inoremap <silent><expr><CR> pumvisible() ? "<C-R>=ExpandOrClosePopup()<CR>" : delimitMate#WithinEmptyPair() ? "\<C-R>=delimitMate#ExpandReturn()\<CR>" : "\<Cr>"
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -135,17 +140,17 @@ set shiftwidth=4
 set expandtab
 
 " Navigation
+set lazyredraw
 set cursorline
 set mouse=a
 set number
 
 " Style
 syntax enable
-set background=dark
-colorscheme deep-space 
+set termguicolors
+colorscheme base16-tomorrow-night
 
 " Other
 let g:tagbar_compact = 1
-" let g:indentLine_char = '▏'
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 

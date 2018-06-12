@@ -2,7 +2,8 @@
 
 CONFIG=$HOME/.config/termite/config
 BACKGROUND=$(cat $CONFIG | awk '/background/ {print $3}')
-VIM=$(ps -e | grep vim)
+DEFAULT_BACKGROUND="#1d1f21"
+VIM=$(pgrep vim)
 
 if [[ -x /usr/bin/vim ]]; then
     VIM_RC=$HOME/.vimrc
@@ -25,12 +26,12 @@ if [[ $VIM ]]; then
             sed -i "s/$BACKGROUND/#282c34/g" $CONFIG
             killall -s USR1 termite
         ;;
-        Tomorrow)
+        Tomorrow | base16-tomorrow)
             sed -i "s/$BACKGROUND/#fafafa/g" $CONFIG
             killall -s USR1 termite
         ;;
-        Tomorrow-Night)
-            sed -i "s/$BACKGROUND/#303030/g" $CONFIG
+        Tomorrow-Night | base16-tomorrow-night)
+            sed -i "s/$BACKGROUND/$DEFAULT_BACKGROUND/g" $CONFIG
             killall -s USR1 termite
         ;;
         tender)
@@ -42,7 +43,8 @@ if [[ $VIM ]]; then
             killall -s USR1 termite
         ;;
         jellybeans)
-            sed -i "s/$BACKGROUND/#151515/g" $CONFIG
+            # True color: #151515
+            sed -i "s/$BACKGROUND/#121212/g" $CONFIG
             killall -s USR1 termite
         ;;
         molokai)
@@ -57,11 +59,15 @@ if [[ $VIM ]]; then
             sed -i "s/$BACKGROUND/#1b202a/g" $CONFIG
             killall -s USR1 termite
         ;;
+        OceanicNext)
+            sed -i "s/$BACKGROUND/#1b2b34/g" $CONFIG
+            killall -s USR1 termite
+        ;;
     esac
     
-    sed -i "s/$BACKGROUND/#2f343f/g" $CONFIG
+    sed -i "s/$BACKGROUND/$DEFAULT_BACKGROUND/g" $CONFIG
 else
-    sed -i "s/$BACKGROUND/#2f343f/g" $CONFIG
+    sed -i "s/$BACKGROUND/$DEFAULT_BACKGROUND/g" $CONFIG
     killall -s USR1 termite
 fi
 

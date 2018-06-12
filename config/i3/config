@@ -19,6 +19,9 @@ bindsym $mod+x exec rofi-run launcher
 # open window switcher
 bindsym $mod+Tab exec rofi-run windows
 
+# open windows picker
+bindsym $mod+m exec skippy-xd --toggle-window-picker
+
 # open mocp control panel
 bindsym $mod+p exec rofi-mocp
 
@@ -135,19 +138,23 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # define colors used
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #d3dae3
-set $inactive-text-color #676e7d
-set $urgent-bg-color     #5294e2
-set $separator           #757575
+set $bg-color            #1d1f21
+set $inactive-bg-color   #1d1f21
+set $text-color          #c5c8c6
+set $inactive-text-color #dddddd
+set $urgent-bg-color     #373b41
+set $separator           #969896
 
 # windows         Border    Background    Text     Indicator
-client.focused    #2b2e39   #2b2e39       #ffffff
-client.unfocused  #4e5467   #4e5467       #ffffff
+client.focused    #151516   #151516       #ffffff
+client.unfocused  #282a2e   #282a2e       #ffffff
 
 # windows starting in floating mode
-for_window [class="^.*"] floating enable border normal
+# for_window [class="^.*"] floating enable border normal
+for_window [window_role="pop-up"] floating enable
+for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [instance="sun-awt-X11-XDialogPeer"] floating enable
+for_window [class="Wine"] floating enable
 
 # volume control
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 10%+ unmute
@@ -216,4 +223,4 @@ exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
 exec --no-startup-id lxpolkit
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
-# exec --no-startup-id ~/Projects/update_checker/checker.sh &
+exec --no-startup-id skippy-xd --start-daemon

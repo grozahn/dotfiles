@@ -148,7 +148,7 @@
     icon_position = left
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    icon_folders = /usr/share/icons/Papirus-Dark/48x48/status/:/usr/share/icons/Papirus-Dark/48x48/devices/
 
 [frame]
     width = 2
@@ -177,17 +177,17 @@
     context = ctrl+mod1+c
 
 [urgency_low]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#282a2e"
+    foreground = "#c5c8c6"
     timeout = 10
 
 [urgency_normal]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#1d1f21"
+    foreground = "#c5c8c6"
     timeout = 10
 
 [urgency_critical]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#1d1f21"
+    foreground = "#c5c8c6"
     timeout = 0
 

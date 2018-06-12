@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 while [[ -d "/proc/$PPID" ]]; do
 	sleep 1

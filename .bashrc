@@ -1,4 +1,4 @@
-export BASH_THEME="minimal"
+export BASH_THEME="gentoo"
 
 case "$BASH_THEME" in 
   minimal) export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
@@ -9,9 +9,10 @@ export EDITOR='nvim'
 
 alias adb-screencast='adb exec-out screenrecord --output-format=h264 - | mpv -'
 alias arch-wiki='w3m https://wiki.archlinux.org'
-alias yd='yandex-disk --proxy=https,89.236.17.108,3128'
-alias update='pacaur -Syu'
+alias yd='yandex-disk --proxy=https,163.172.86.64,3128'
+alias mvim='nvim -u $HOME/.config/nvim/min.vim'
 alias bashrc='$EDITOR $HOME/.bashrc'
+alias update='pacaur -Syu'
 alias q='exit'
 
 use_proxy() {
@@ -26,10 +27,10 @@ converter() {
   case $1 in
     ascii)
       echo -n "$2" | rev | od -A n -t x1 | sed 's/ /\\x/g' 
-      ;;
+    ;;
     hex)
       echo -e "$2" | rev
-      ;;
+    ;;
   esac
 }
 
@@ -69,7 +70,7 @@ recorder() {
 
 vk-cli() {
   export TERM=xterm
-  export http_proxy="89.236.17.108:3128"
+  export http_proxy="163.172.86.64:3128"
   export https_proxy="$http_proxy"
 	
   vk

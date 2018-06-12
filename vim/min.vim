@@ -72,16 +72,18 @@ set statusline+=%m
 set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ 
 set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 
 " Common settings
-set nocompatible
 set noswapfile
-filetype off
-filetype plugin on
+set listchars=tab:\▏\ 
+set list
+
 filetype plugin indent on
+autocmd FileType make setlocal noexpandtab
 
 " Encoding
 set encoding=utf-8
@@ -106,5 +108,5 @@ set number
 
 " Style
 syntax enable
-colorscheme elflord 
-set background=dark
+set termguicolors
+colorscheme base16-tomorrow-night 

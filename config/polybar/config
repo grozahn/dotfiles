@@ -1,279 +1,278 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
 [colors]
-background = #2f343f
-background-alt = #2f343f
-foreground = #d3dae3
-foreground-alt = #676e7d
-primary = #5294e2
-alert = #cc6666 
+    background     = #1d1f21
+    background-alt = #282a2e
+    foreground     = #c5c8c6
+    foreground-alt = #969896
+    primary        = #81a2be
+    warn           = #cc6666
+
+;--------------------------------------------
+; bar/laptop                                ;
+;--------------------------------------------
 
 [bar/laptop]
-monitor = ${env:MONITOR:LVDS1}
-width = 100%
-height = 23
-fixed-center = false 
+    monitor = ${env:MONITOR:LVDS1}
+    width = 100%
+    height = 23
+    fixed-center = true 
+    line-size = 2
+    
+    background = ${colors.background}
+    foreground = ${colors.foreground}
+    
+    padding-left = 2
+    padding-right = 2
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+    module-margin-left = 1
+    module-margin-right = 1
 
-padding-left = 2
-padding-right = 2
+    font-0 = fixed:pixelsize=10;2
+    font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+    font-2 = Cantarell:pixelsize=10;1
+    font-3 = FontAwesome:pixelsize=11;2
+    
+    modules-left = rofi-run xwindow spotify 
+    modules-center = i3
+    modules-right = xkeyboard temperature memory wlan volume battery date
+    
+    tray-position = right
+    tray-padding = 1
 
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = fixed:pixelsize=10;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Cantarell:pixelsize=10;1
-font-3 = FontAwesome:pixelsize=10;1
-
-modules-left = i3
-modules-center = xwindow
-modules-right = xkeyboard cpu temperature memory wlan volume battery date
-
-tray-position = right
-tray-padding = 2
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:65:...%
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-
-label-layout = %layout%
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.background}
-
-[module/filesystem]
-type = internal/fs
-interval = 15
-
-mount-0 = /home
-
-label-mounted =  %percentage_used%%
-label-mounted-foreground = ${colors.foreground}
-
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.alert}
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-pin-workspaces = true
-wrapping-scroll = false
-
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.primary}
-
-label-focused = %name% 
-label-focused-foreground = ${colors.foreground} 
-label-focused-background = ${colors.background} 
-label-focused-padding = 1
-
-label-unfocused = %name%
-label-unfocused-foreground = ${colors.foreground-alt}
-label-unfocused-padding = 1
-
-label-visible = %name%
-label-visible-padding = 1
-
-label-urgent = %name%
-label-urgent-foreground = ${colors.primary}
-label-urgent-background = ${colors.background}
-label-urgent-padding = 1
-
-[module/xbacklight]
-type = internal/xbacklight
-card = intel_backlight
-
-format = <label>
-label =  %percentage%%
-
-[module/cpu]
-type = internal/cpu
-interval = 1
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage%%
-
-[module/memory]
-type = internal/memory
-interval = 1
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage_used%%
-
-[module/wlan]
-type = internal/network
-interface = wlp3s0 
-interval = 3 
-
-format-connected = <label-connected>
-format-connected-foreground = ${colors.foreground} 
-label-connected =  %signal%%
-
-format-disconnected =   
-format-disconnected-foreground = ${colors.alert} 
-
-[module/eth]
-type = internal/network
-interface = enp4s0f0 
-interval = 3 
-
-format-connected = <label-connected>
-format-connected-foreground = ${colors.foreground}
-label-connected =  %local_ip%
-
-format-disconnected =  
-format-disconnected-foreground = ${colors.alert}
-
-[module/date]
-type = internal/date
-interval = 1
-date = " %H:%M"
-date-alt = " %A, %d %B"
-label = %date% %time%
-
-format-prefix-foreground = ${colors.foreground-alt}
-
-[module/volume]
-type = internal/volume
-
-format-volume = <ramp-volume> <label-volume>
-
-label-volume = %percentage%%
-label-volume-foreground = ${colors.foreground}
-
-label-muted =  %percentage%%
-label-muted-foreground = ${colors.alert}
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-
-[module/battery]
-type = internal/battery
-battery = BAT1
-adapter = ADP1
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-
-format-discharging = <ramp-capacity> <label-discharging>
-
-format-full-prefix = " " 
-format-full-prefix-foreground = ${colors.foreground}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground}
-animation-charging-framerate = 750
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 70
-
-format = <label>
-format-warn = <label-warn>
-
-label =  %temperature%
-label-warn =  %temperature%
-label-warn-foreground = ${colors.alert}
 
 [settings]
-screenchange-reload = true
+    screenchange-reload = true
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+    margin-top = 5
+    margin-bottom = 5
+
+;--------------------------------------------
+; bar/monitor                               ;
+;--------------------------------------------
 
 [bar/monitor]
-width = 100%
-height = 23
-fixed-center = true 
+    width = 100%
+    height = 23
+    fixed-center = true 
+    
+    line-size = 2
+    
+    background = ${colors.background}
+    foreground = ${colors.foreground}
+    
+    padding-left = 2
+    padding-right = 2
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+    module-margin-left = 1
+    module-margin-right = 1
 
-line-size = 2
-line-color = ${colors.foreground} 
+    font-0 = fixed:pixelsize=10;2
+    font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+    font-2 = Cantarell:pixelsize=10;1
+    font-3 = FontAwesome:pixelsize=11;2
+    
+    modules-left = rofi-run xwindow
+    modules-center = i3
+    modules-right = mocp
 
-padding-left = 2
-padding-right = 2
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
 
-module-margin-left = 1
-module-margin-right = 1
+[module/xwindow]
+    type = internal/xwindow
+    label = %title:0:40:...%
+    
+[module/xkeyboard]
+    type = internal/xkeyboard
+    blacklist-0 = num lock
+    
+    format-prefix = " "
+    format-prefix-foreground = ${colors.foreground}
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Cantarell:pixelsize=10;1
-font-3 = FontAwesome:pixelsize=10;0
+[module/i3]
+    type = internal/i3
+    format = <label-state> <label-mode>
+    index-sort = true
+    pin-workspaces = true
+    wrapping-scroll = false
+    
+    label-mode = %mode%
+    label-mode-padding = 3
+    label-mode-foreground = ${colors.foreground}
+    
+    label-focused = %index% 
+    label-focused-padding = 2
+    label-focused-underline = ${colors.foreground}
+    label-focused-background = ${colors.background-alt}
+    label-focused-foreground = ${colors.foreground}
+    
+    label-unfocused = %index%
+    label-unfocused-padding = 2
+    label-unfocused-background = ${colors.background}
+    label-unfocused-foreground = ${colors.foreground}
 
-modules-left = i3
-modules-center = xwindow 
-modules-right = mocp
+    label-visible = %index%
+    label-visible-padding = 2
+    label-visible-background = ${colors.background}
+    label-visible-foreground = ${colors.foreground}
 
-[monitor/module/xwindow]
-type = internal/xwindow
-label = %title:0:65:...%
+    label-urgent = %index%
+    label-urgent-padding = 2
+    label-urgent-underline = ${colors.warn}
+    label-urgent-background = ${colors.background-alt}
+    label-urgent-foreground = ${colors.warn}
 
-[monitor/module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-pin-workspaces = true
-wrapping-scroll = false
+[module/cpu]
+    type = internal/cpu
+    interval = 1
+    format-prefix = " "
+    format-prefix-foreground = ${colors.foreground}
+    label = %percentage%%
 
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.primary}
+[module/memory]
+    type = internal/memory
+    interval = 1
+    format-prefix = " "
+    format-prefix-foreground = ${colors.foreground}
+    label = %percentage_used%%
 
-label-focused = %name% 
-label-focused-foreground = ${colors.foreground} 
-label-focused-background = ${colors.background} 
-label-focused-padding = 1
+[module/wlan]
+    type = internal/network
+    interface = wlp3s0 
+    interval = 3 
+    
+    format-connected = <label-connected>
+    format-connected-foreground = ${colors.foreground} 
+    label-connected =  %signal%%
+    
+    format-disconnected =   
+    format-disconnected-foreground = ${colors.warn} 
 
-label-unfocused = %name%
-label-unfocused-foreground = ${colors.foreground-alt}
-label-unfocused-padding = 1
+[module/eth]
+    type = internal/network
+    interface = enp4s0f0 
+    interval = 3 
+    
+    format-connected = <label-connected>
+    format-connected-foreground = ${colors.foreground}
+    label-connected =  %local_ip%
+    
+    format-disconnected =  
+    format-disconnected-foreground = ${colors.warn}
 
-label-visible = %name%
-label-visible-padding = 1
+[module/date]
+    type = internal/date
+    interval = 1
+    date = " %H:%M"
+    date-alt = " %A, %d %B"
+    label = %date% %time%
+    
+    format-prefix-foreground = ${colors.foreground-alt}
 
-label-urgent = %name%
-label-urgent-foreground = ${colors.primary}
-label-urgent-background = ${colors.background}
-label-urgent-padding = 1
+[module/volume]
+    type = internal/volume
+    
+    format-volume = <ramp-volume> <label-volume>
+    
+    label-volume = %percentage%%
+    label-volume-foreground = ${colors.foreground}
+    
+    label-muted = 
+    label-muted-foreground = ${colors.warn}
+    
+    ramp-volume-0 = 
+    ramp-volume-1 = 
+    ramp-volume-2 = 
+    
+    ramp-headphones-0 = 
+    ramp-headphones-1 = 
+
+[module/battery]
+    type = internal/battery
+    battery = BAT1
+    adapter = ADP1
+    full-at = 98
+    
+    format-charging = <animation-charging> <label-charging>
+    
+    format-discharging = <ramp-capacity> <label-discharging>
+    
+    format-full-prefix = 
+    format-full-padding = 1
+    format-full-prefix-foreground = ${colors.foreground}
+    
+    ramp-capacity-0 = 
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-3 = 
+    ramp-capacity-4 = 
+    ramp-capacity-foreground = ${colors.foreground}
+    
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-3 = 
+    animation-charging-4 = 
+    animation-charging-foreground = ${colors.foreground}
+    animation-charging-framerate = 750
+
+[module/temperature]
+    type = internal/temperature
+    thermal-zone = 0
+    warn-temperature = 70
+    
+    format = <label>
+    format-warn = <label-warn>
+    
+    label =  %temperature%
+    label-warn =  %temperature%
+    label-warn-foreground = ${colors.warn}
+
+[module/rofi-run]
+    type = custom/text
+   
+    content = 
+    content-padding = 1
+    content-foreground = ${colors.foreground}
+
+    click-left = rofi-run launcher
+    click-right = rofi-run windows
+
+[module/spotify]
+    type = custom/script
+    exec = sh ~/.config/polybar/spotify.sh
+    exec-if = pgrep -x spotify
+    interval = 1
+    
+    format-prefix = 
+    format-prefix-padding = 1
+    format-prefix-foreground = ${colors.foreground}
+    
+    label = %output:0:40:...%
+    label-foreground = ${colors.foreground}
+    
+    click-left = playerctl play-pause
+    click-middle = playerctl previous
+    click-right = playerctl next
 
 [module/mocp]
-type = custom/script
+    type = custom/script
+    
+    format-prefix = 
+    format-prefix-foreground = ${colors.foreground}
+    format-prefix-padding = 1
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
+    exec = rofi-mocp -i
+    click-left = mocp -G
+    click-middle = mocp -r 
+    click-right = mocp -f
 
-exec = rofi-mocp -i
-click-left = rofi-mocp
+[monitor/module/xwindow]
+    type = internal/xwindow
+    label = %title:0:65:...%

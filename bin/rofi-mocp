@@ -9,7 +9,7 @@ if [[ $1 == "-i" ]]; then
     printf "$(get_current_song | sed 's/&amp\;/\&/g')"
 else 
     ACTION=$(printf "pause/play\nnext\nprevious\nshuffle\nrepeat\nplaylist\nopen\nstart\nexit\n" |\
-             rofi -dmenu -p 'mocp' -mesg "Current song: $(get_current_song | sed 's/\&/\&amp\;/g')")
+             rofi -dmenu -p 'mocp' -mesg "Current song: $(get_current_song | sed 's/\&/\&amp\;/g')" -separator-style solid)
     
     case $ACTION in
         'pause/play') mocp -G            ;;

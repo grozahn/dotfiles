@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-echo deadline > /sys/block/sda/queue/scheduler
+echo bfq-sq > /sys/block/sda/queue/scheduler
 governor -s performance
