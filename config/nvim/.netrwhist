@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/andrey/Workspace/Python/tables/__pycache__'
-let g:netrw_dirhist_2='/usr/local/share/icons/elementary-full-blue'
-let g:netrw_dirhist_3='/home/andrey/cook/cook'
-let g:netrw_dirhist_4='/home/andrey/cook/cook/core'
-let g:netrw_dirhist_5='/home/andrey/.minecraft/saves/Regular Show/opencomputers/3104e5d0-0ce5-46b5-a5be-76c7724be9ba/home'
-let g:netrw_dirhist_6='/home/andrey/Projects/Hub/stringw'
