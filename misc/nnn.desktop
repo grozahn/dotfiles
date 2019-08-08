@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=nnn
+Comment=The missing terminal file manager for X
+Icon=utilities-terminal
+Terminal=true
+Exec=NNN_CONTEXT_COLORS='3214' nnn
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;
