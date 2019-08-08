@@ -69,11 +69,6 @@ tabnew -params .. -command-completion %{
 }
 
 # Mappings
-hook global ModuleLoaded tmux %{
-    map global normal '<c-s>' :tabnew<ret>
-    map global normal '<c-q>' :q!<ret>
-}
-
 map global normal '<c-s>' :b\ <tab>
 map global normal '<c-d>' :buffer-next<ret>
 map global normal '<c-a>' :buffer-previous<ret>
