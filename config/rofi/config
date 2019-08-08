@@ -1,0 +1,10 @@
+rofi.theme: /home/andrey/.config/rofi/themes/flat-magenta.rasi
+
+rofi.font:                           Noto Sans 11
+rofi.sidebar-mode:                   false
+rofi.show-icons:                     true
+rofi.width:                          540
+rofi.lines:                          10
+rofi.combi-hide-mode-prefix:         true
+rofi.display-combi:                  run
+rofi.combi-modi:                     drun,run

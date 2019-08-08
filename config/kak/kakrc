@@ -1,0 +1,87 @@
+# plug.kak init
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# Plugins
+plug "ul/kak-lsp" do %{
+    cargo build --release --locked
+    cargo install --force --path .
+} config %{
+    define-command lsp-restart %{ lsp-stop; lsp-start }
+    set-option global lsp_diagnostic_line_error_sign "!"
+    set-option global lsp_diagnostic_line_warning_sign "?"
+    hook global WinSetOption filetype=(c|cpp|rust|python) %{
+        map window user "l" ": enter-user-mode lsp<ret>" -docstring "LSP mode"
+        lsp-enable-window
+        lsp-auto-signature-help-enable
+
+        map global normal '<c-k>' ': lsp-hover<ret>'
+        map global insert '<c-k>' '<a-;>: lsp-hover<ret>'
+        lsp-auto-hover-disable
+        lsp-auto-hover-insert-mode-disable
+
+        set-option window lsp_hover_anchor true
+        set-face window DiagnosticError default+u
+        set-face window DiagnosticWarning default+u
+    }
+    hook global WinSetOption filetype=rust %{
+        set-option window lsp_server_configuration rust.clippy_preference="on"
+    }
+    hook global KakEnd .* lsp-exit
+}
+
+plug "andreyorst/smarttab.kak" %{
+    set-option global softtabstop 4
+    hook global WinSetOption filetype=(rust|markdown|kak|python|scheme|sh|c|cpp) expandtab
+    hook global WinSetOption filetype=(makefile|gas) noexpandtab
+}
+
+plug "occivink/kakoune-gdb"
+
+# Indentation
+set-option global tabstop 4
+set-option global indentwidth 4
+
+# Default colorscheme
+colorscheme tomorrow-night
+
+# Highlighters
+hook global KakBegin .* %{
+    add-highlighter global/numbers    number-lines -relative -hlcursor -separator ' '
+    add-highlighter global/matching   show-matching
+    add-highlighter global/whitespace show-whitespaces -tab "▏" -lf " " -nbsp "⋅" -spc " "
+    add-highlighter global/wrap       wrap -word -indent -marker ↪
+}
+
+# Tmux integration
+define-command -override -docstring "split tmux vertically" \
+vsp -params .. -command-completion %{
+    tmux-terminal-horizontal kak -c %val{session} -e "%arg{@}"
+}
+
+define-command -override  -docstring "split tmux horizontally" \
+sp -params .. -command-completion %{
+    tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
+}
+
+define-command -override -docstring "create new tmux window" \
+tabnew -params .. -command-completion %{
+    tmux-terminal-window kak -c %val{session} -e "%arg{@}"
+}
+
+# Mappings
+hook global ModuleLoaded tmux %{
+    map global normal '<c-s>' :tabnew<ret>
+    map global normal '<c-q>' :q!<ret>
+}
+
+map global normal '<c-s>' :b\ <tab>
+map global normal '<c-d>' :buffer-next<ret>
+map global normal '<c-a>' :buffer-previous<ret>
+map global normal '<c-q>' :delete-buffer!<ret>
+
+map global normal '#' :comment-line<ret>
+map global normal '@' :comment-block<ret>
+
+# Completion by Tab key
+hook global InsertCompletionShow .* %{map   window insert <tab> <c-n>; map   window insert <s-tab> <c-p>}
+hook global InsertCompletionHide .* %{unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>}

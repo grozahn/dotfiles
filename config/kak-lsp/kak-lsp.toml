@@ -1,0 +1,23 @@
+snippet_support = false
+verbosity = 2
+
+[server]
+# exit session if no requests were received during given period in seconds
+# works only in unix sockets mode (-s/--session)
+# set to 0 to disable
+timeout = 1800 # seconds = 30 minutes
+
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml"]
+command = "rls"
+
+[language.python]
+filetypes = ["python"]
+roots = [""]
+command = "pyls"
+
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = ["compile_flags.txt", "compile_commands.json"]
+command = "clangd"

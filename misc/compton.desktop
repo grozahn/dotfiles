@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=compton
+GenericName=X compositor
+Comment=Compositor for X11
+Categories=Utility;
+TryExec=/usr/bin/compton
+Exec=compton --config /home/andrey/.config/i3/compton.conf -b --shadow-exclude "class_g ?= 'Rofi'"
+Icon=compton
+OnlyShowIn=XFCE;
+

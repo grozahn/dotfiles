@@ -1,10 +1,9 @@
 [options]
     allow_bold = true
-    # audible_bell = false 
-    clickable_url = true
+    clickable_url = false
     dynamic_title = true
-    # font = Fura Code Nerd Font 9
-    font = Hack Nerd Font 9
+    # font = Inconsolata 10
+    font = Hack 9
     # fullscreen = true
     # geometry = 640x480
     icon_name = terminal
@@ -12,11 +11,9 @@
     # search_wrap = true
     # urgent_on_bell = true
     hyperlinks = true
-    browser = chromium 
+    browser = firefox
     cursor_shape = ibeam
     filter_unmatched_urls = true
-    # modify_other_keys = false
-    # size_hints = false
     scrollbar = off
 
 [colors]
@@ -25,35 +22,35 @@
     foreground_bold = #c5c8c6
     cursor          = #c5c8c6
     background      = #1d1f21
-    
+
     # black
     color0  = #1d1f21
     color8  = #969896
-    
+
     # red
     color1  = #cc6666
     color9  = #cc6666
-    
+
     # green
     color2  = #b5bd68
     color10 = #b5bd68
-    
+
     # yellow
     color3  = #f0c674
     color11 = #f0c674
-    
+
     # blue
     color4  = #81a2be
     color12 = #81a2be
-    
+
     # magenta
     color5  = #b294bb
     color13 = #b294bb
-    
+
     # cyan
     color6  = #8abeb7
     color14 = #8abeb7
-    
+
     # white
     color7  = #c5c8c6
     color15 = #ffffff
