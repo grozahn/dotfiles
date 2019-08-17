@@ -7,6 +7,8 @@ ZSH_THEME="theunraveler"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+# Fuzzy Finder key bindings
+[ -d /usr/share/fzf ] && source /usr/share/fzf/key-bindings.zsh
 
 export DEFAULT_USER=$USER
 export PAGER='less'
@@ -20,17 +22,14 @@ alias shrc='$EDITOR $HOME/.zshrc'
 alias upd='pikaur -Syu'
 alias nv='nvim'
 
-# History search
-fh() { $(history | sed -E 's/\w+//;s/^\s+//' | fzf --tac); }
-
 # Kakoune session attach
-kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $1; else kak $1; fi }
+kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $@; else kak $@; fi }
 
 # Run Neovim with minimal config
 mvim() { $EDITOR -u $HOME/.config/nvim/min.vim $@; }
 
 # Convert ASCII string to HEX in reverse (Little-Endian) order
-a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\x/g'; }
+a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\\x/g'; }
 
 # Search for specific string in files
 insearch() { grep -rnI $2 -e $1 | fzf; }
@@ -69,6 +68,7 @@ transfer() {
     cat $tmpfile; echo; rm -f $tmpfile
 }
 
+# Pack archive
 pk () {
     if [ $1 ] ; then
         case $1 in
@@ -86,6 +86,7 @@ pk () {
     fi
 }
 
+# Extract archive
 ex () {
     if [ -f $1 ] ; then
         case $1 in
@@ -110,3 +111,4 @@ ex () {
 
 # Message of the day
 # echo '\n ~/ I show you how deep the rabbit hole goes \~'
+

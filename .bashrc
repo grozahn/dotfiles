@@ -10,6 +10,9 @@ case "$BASH_THEME" in
         export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
 esac
 
+# Fuzzy Finder key bindings
+[ -d /usr/share/fzf ] && source /usr/share/fzf/key-bindings.bash
+
 export PAGER='less'
 export EDITOR='nvim'
 export NNN_CONTEXT_COLORS='3214'
@@ -22,17 +25,14 @@ alias upd='pikaur -Syu'
 alias ls='ls --color=tty'
 alias nv='nvim'
 
-# History search
-fh() { $(history | sed -E 's/\w+//;s/^\s+//' | fzf --tac); }
-
 # Kakoune attach
-kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $1; else kak $1; fi }
+kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $@; else kak $@; fi }
 
 # Run Neovim with minimal config
 mvim() { $EDITOR -u $HOME/.config/nvim/min.vim $@; }
 
 # Convert ASCII string to HEX in reverse (Little-Endian) order
-a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\x/g'; }
+a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\\x/g'; }
 
 # Search for specific string in files
 insearch() { grep -rnI $2 -e $1 | fzf; }
@@ -71,6 +71,7 @@ transfer() {
     cat $tmpfile; echo; rm -f $tmpfile
 }
 
+# Pack archive
 pk () {
     if [ $1 ] ; then
         case $1 in
@@ -88,6 +89,7 @@ pk () {
     fi
 }
 
+# Extract archive
 ex () {
     if [ -f $1 ] ; then
         case $1 in
