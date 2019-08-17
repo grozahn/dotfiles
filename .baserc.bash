@@ -1,4 +1,8 @@
-export BASH_THEME='theunraveler'
+# Set history size
+export HISTSIZE=50000
+export HISTFILESIZE=
+
+# Define prompt themes
 case "$BASH_THEME" in
     theunraveler)
         export PS1='\[\e[35m\][\W] \[\e[0m\]' ;;
@@ -10,18 +14,12 @@ case "$BASH_THEME" in
         export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
 esac
 
-# Fuzzy Finder key bindings
-[ -d /usr/share/fzf ] && source /usr/share/fzf/key-bindings.bash
-
 export PAGER='less'
 export EDITOR='nvim'
 export NNN_CONTEXT_COLORS='3214'
 
-alias adb-screencast='adb exec-out screenrecord --output-format=h264 - | mpv -'
-alias awiki='w3m https://wiki.archlinux.org'
 alias fetch='neofetch --ascii_distro netbsd'
 alias shrc='$EDITOR $HOME/.bashrc'
-alias upd='pikaur -Syu'
 alias ls='ls --color=tty'
 alias nv='nvim'
 
@@ -111,6 +109,3 @@ ex () {
         echo "'$1' is not valid file"
     fi
 }
-
-# Message of the day
-# echo -e '\n ~/ I show you how deep the rabbit hole goes \~'
