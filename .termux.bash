@@ -5,8 +5,12 @@ export BASH_THEME='gentoo'
 source $HOME/.baserc.bash
 
 # Set Termux root directory
-export TERMUX_ROOT='/data/data/com.termux/files/'
+export TERMUX_ROOT='/data/data/com.termux/files'
 
+# Set default environment variables
+export EDITOR='kak'
+
+# Aliases
 alias sqlmap='python2.7 $HOME/pentest/sqlmap/sqlmap.py'
 alias upd='apt update && apt upgrade'
 

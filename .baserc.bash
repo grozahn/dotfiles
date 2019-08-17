@@ -14,8 +14,9 @@ case "$BASH_THEME" in
         export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
 esac
 
+# Set default environment variables
 export PAGER='less'
-export EDITOR='nvim'
+export EDITOR='vi'
 export NNN_CONTEXT_COLORS='3214'
 
 alias fetch='neofetch --ascii_distro netbsd'
