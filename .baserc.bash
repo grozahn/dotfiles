@@ -1,3 +1,5 @@
+export TERM='xterm-256color'
+
 # Set history size
 export HISTSIZE=50000
 export HISTFILESIZE=
