@@ -1,11 +1,12 @@
 /**
  * ROFI Color theme
  * User: grozahn
+ * Forked from flat-orange theme
  */
 
 /* global settings and color variables */
 * {
-   maincolor:        #81a2be;
+   maincolor:        #b294bb;
    urgentcolor:      #cc6666;
 
    fgwhite:          #c5c8c6;
