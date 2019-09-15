@@ -1,35 +1,15 @@
+# Modifier key
 set $mod Mod4
 
 # Fonts
 font pango:monospace 10
-font pango:Cantarell 10
+font pango:Noto Sans 10
 
 # Floating modifier
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec termite 
-
 # kill focused window
 bindsym $mod+q kill
-
-# start program launcher
-bindsym $mod+x exec rofi-run launcher
-
-# open window switcher
-bindsym $mod+Tab exec rofi-run windows
-
-# open windows picker
-bindsym $mod+m exec skippy-xd --toggle-window-picker
-
-# open mocp control panel
-bindsym $mod+p exec rofi-mocp
-
-# open task manager
-bindsym $mod+Escape exec xfce4-taskmanager 
-
-# change termite background
-bindsym $mod+t exec termite-bg
 
 # change focus
 bindsym $mod+j focus left
@@ -76,16 +56,28 @@ bindsym $mod+Shift+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+# start a terminal
+bindsym $mod+Return exec kitty
+# open application launcher
+bindsym $mod+x exec "rofi -show combi -modi combi,calc"
+# open window switcher
+bindsym $mod+Tab exec "rofi -show window -modi window"
+# open task manager
+bindsym $mod+Escape exec xfce4-taskmanager
+# open display settings
+# ! zrandr still not implemented
+# bindsym $mod+d exec "zrandr"
+
+set $workspace1  "I"
+set $workspace2  "II"
+set $workspace3  "III"
+set $workspace4  "IV"
+set $workspace5  "V"
+set $workspace6  "VI"
+set $workspace7  "VII"
+set $workspace8  "VIII"
+set $workspace9  "XI"
+set $workspace10 "X"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -115,26 +107,26 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # restart polybar
 bindsym $mod+Shift+p exec pkill -USR1 polybar
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  bindsym j resize shrink width 10 px or 10 ppt
-  bindsym k resize grow height 10 px or 10 ppt
-  bindsym l resize shrink height 10 px or 10 ppt
-  bindsym odiaeresis resize grow width 10 px or 10 ppt
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # define colors used
@@ -151,28 +143,32 @@ client.unfocused  #282a2e   #282a2e       #ffffff
 
 # windows starting in floating mode
 # for_window [class="^.*"] floating enable border normal
+
 for_window [window_role="pop-up"] floating enable
+for_window [instance="mate-calc"] floating enable
+
+# Java and Wine
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 for_window [instance="sun-awt-X11-XDialogPeer"] floating enable
 for_window [class="Wine"] floating enable
 
 # volume control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 10%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 10%- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # brightness control
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# screenshot
+# screenshots
 bindsym Print --release exec --no-startup-id i3scrot -f
 bindsym $mod+Print --release exec --no-startup-id i3scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3scrot -s
 
 # gaps
 for_window [class="^.*"] border pixel 2
-gaps inner 17
+gaps inner 20
 smart_borders on
 
 # gaps control
@@ -185,42 +181,29 @@ bindsym $mod+minus gaps inner current minus 5
 bindsym $mod+Control+0 gaps inner current set 17; gaps outer current set 0
 
 # shut down, restart and locking features
-bindsym $mod+Delete mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id i3exit lock, mode "default"
-  bindsym s exec --no-startup-id i3exit suspend, mode "default"
-  bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-  bindsym e exec --no-startup-id i3exit logout, mode "default"
-  bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-  bindsym r exec --no-startup-id i3exit reboot, mode "default"
-  bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-  # exit system mode: "Enter" or "Escape"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
+bindsym $mod+Delete mode "$mode_system"
 
-# multihead management
-bindsym $mod+d mode "$display_mode"
-set $display_mode Set display mode: (l)aptop, (h)ome, (t)v, (p)rojector
-mode "$display_mode" {
-  bindsym l exec --no-startup-id i3-multihead laptop, mode "default"
-  bindsym h exec --no-startup-id i3-multihead home, mode "default"
-  bindsym t exec --no-startup-id i3-multihead tv, mode "default"
-  bindsym p exec --no-startup-id i3-multihead projector, mode "default"
 
-  # exit display mode: "Enter" or "Escape"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-# autostarted applications
+# autostart
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar laptop
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
-exec --no-startup-id nitrogen --restore; sleep 1;
-exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
-exec --no-startup-id lxpolkit
+exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:caps_toggle
+exec --no-startup-id natural-scrolling enable
+exec --no-startup-id /usr/bin/libinput-gestures
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 exec --no-startup-id dunst
-exec --no-startup-id light-locker
-exec --no-startup-id skippy-xd --start-daemon

@@ -1,0 +1,12 @@
+# Add directory with i3 scripts to PATH
+export PATH=$PATH:$HOME/.config/i3/scripts
+
+# Turn off speakser
+xset b off
+# Disable DPMS
+xset -dpms
+# Disable screensaver
+xset s off
+
+# Set background color
+xsetroot -solid '#1c1c1c'

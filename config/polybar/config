@@ -6,7 +6,7 @@
 [colors]
     background     = #1d1f21
     background-alt = #282a2e
-    foreground     = #c5c8c6
+    foreground     = #a8a8a8
     foreground-alt = #969896
     primary        = #81a2be
     warn           = #cc6666
@@ -17,14 +17,15 @@
 
 [bar/laptop]
     monitor = ${env:MONITOR:LVDS1}
+
     width = 100%
-    height = 23
-    fixed-center = true 
+    height = 24
+    fixed-center = true
     line-size = 2
-    
+
     background = ${colors.background}
     foreground = ${colors.foreground}
-    
+
     padding-left = 2
     padding-right = 2
 
@@ -33,13 +34,13 @@
 
     font-0 = fixed:pixelsize=10;2
     font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-    font-2 = Cantarell:pixelsize=10;1
+    font-2 = Noto Sans:pixelsize=10;1
     font-3 = FontAwesome:pixelsize=11;2
-    
-    modules-left = rofi-run xwindow spotify 
+
+    modules-left = rofi-start xwindow
     modules-center = i3
     modules-right = xkeyboard temperature memory wlan volume battery date
-    
+
     tray-position = right
     tray-padding = 1
 
@@ -57,14 +58,15 @@
 
 [bar/monitor]
     width = 100%
-    height = 23
-    fixed-center = true 
-    
+    height = 24
+
+    fixed-center = true
+
     line-size = 2
-    
+
     background = ${colors.background}
     foreground = ${colors.foreground}
-    
+
     padding-left = 2
     padding-right = 2
 
@@ -73,12 +75,11 @@
 
     font-0 = fixed:pixelsize=10;2
     font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-    font-2 = Cantarell:pixelsize=10;1
+    font-2 = Noto Sans:pixelsize=10;1
     font-3 = FontAwesome:pixelsize=11;2
-    
-    modules-left = rofi-run xwindow
+
+    modules-left = xwindow
     modules-center = i3
-    modules-right = mocp
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -86,12 +87,12 @@
 
 [module/xwindow]
     type = internal/xwindow
-    label = %title:0:40:...%
-    
+    label = %title:0:34:...%
+
 [module/xkeyboard]
     type = internal/xkeyboard
     blacklist-0 = num lock
-    
+
     format-prefix = " "
     format-prefix-foreground = ${colors.foreground}
 
@@ -101,17 +102,17 @@
     index-sort = true
     pin-workspaces = true
     wrapping-scroll = false
-    
+
     label-mode = %mode%
     label-mode-padding = 3
     label-mode-foreground = ${colors.foreground}
-    
+
     label-focused = %index% 
     label-focused-padding = 2
     label-focused-underline = ${colors.foreground}
     label-focused-background = ${colors.background-alt}
     label-focused-foreground = ${colors.foreground}
-    
+
     label-unfocused = %index%
     label-unfocused-padding = 2
     label-unfocused-background = ${colors.background}
@@ -144,25 +145,25 @@
 
 [module/wlan]
     type = internal/network
-    interface = wlp3s0 
-    interval = 3 
-    
+    interface = wlp3s0
+    interval = 3
+
     format-connected = <label-connected>
-    format-connected-foreground = ${colors.foreground} 
+    format-connected-foreground = ${colors.foreground}
     label-connected =  %signal%%
-    
+
     format-disconnected =   
-    format-disconnected-foreground = ${colors.warn} 
+    format-disconnected-foreground = ${colors.warn}
 
 [module/eth]
     type = internal/network
-    interface = enp4s0f0 
-    interval = 3 
-    
+    interface = enp0s3
+    interval = 3
+
     format-connected = <label-connected>
     format-connected-foreground = ${colors.foreground}
     label-connected =  %local_ip%
-    
+
     format-disconnected =  
     format-disconnected-foreground = ${colors.warn}
 
@@ -172,24 +173,24 @@
     date = " %H:%M"
     date-alt = " %A, %d %B"
     label = %date% %time%
-    
+
     format-prefix-foreground = ${colors.foreground-alt}
 
 [module/volume]
     type = internal/volume
-    
+
     format-volume = <ramp-volume> <label-volume>
-    
+
     label-volume = %percentage%%
     label-volume-foreground = ${colors.foreground}
-    
+
     label-muted = 
     label-muted-foreground = ${colors.warn}
-    
+
     ramp-volume-0 = 
     ramp-volume-1 = 
     ramp-volume-2 = 
-    
+
     ramp-headphones-0 = 
     ramp-headphones-1 = 
 
@@ -198,22 +199,22 @@
     battery = BAT1
     adapter = ADP1
     full-at = 98
-    
+
     format-charging = <animation-charging> <label-charging>
-    
+
     format-discharging = <ramp-capacity> <label-discharging>
-    
+
     format-full-prefix = 
     format-full-padding = 1
     format-full-prefix-foreground = ${colors.foreground}
-    
+
     ramp-capacity-0 = 
     ramp-capacity-1 = 
     ramp-capacity-2 = 
     ramp-capacity-3 = 
     ramp-capacity-4 = 
     ramp-capacity-foreground = ${colors.foreground}
-    
+
     animation-charging-0 = 
     animation-charging-1 = 
     animation-charging-2 = 
@@ -226,53 +227,20 @@
     type = internal/temperature
     thermal-zone = 0
     warn-temperature = 70
-    
+
     format = <label>
     format-warn = <label-warn>
-    
+
     label =  %temperature%
     label-warn =  %temperature%
     label-warn-foreground = ${colors.warn}
 
-[module/rofi-run]
+[module/rofi-start]
     type = custom/text
-   
+
     content = 
     content-padding = 1
     content-foreground = ${colors.foreground}
 
-    click-left = rofi-run launcher
-    click-right = rofi-run windows
-
-[module/spotify]
-    type = custom/script
-    exec = sh ~/.config/polybar/spotify.sh
-    exec-if = pgrep -x spotify
-    interval = 1
-    
-    format-prefix = 
-    format-prefix-padding = 1
-    format-prefix-foreground = ${colors.foreground}
-    
-    label = %output:0:40:...%
-    label-foreground = ${colors.foreground}
-    
-    click-left = playerctl play-pause
-    click-middle = playerctl previous
-    click-right = playerctl next
-
-[module/mocp]
-    type = custom/script
-    
-    format-prefix = 
-    format-prefix-foreground = ${colors.foreground}
-    format-prefix-padding = 1
-
-    exec = rofi-mocp -i
-    click-left = mocp -G
-    click-middle = mocp -r 
-    click-right = mocp -f
-
-[monitor/module/xwindow]
-    type = internal/xwindow
-    label = %title:0:65:...%
+    click-left = "rofi -show combi -modi combi"
+    click-right = "rofi -show window -modi window"
