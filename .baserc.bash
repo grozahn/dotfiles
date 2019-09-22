@@ -29,9 +29,6 @@ alias nv='nvim'
 # Kakoune attach
 kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $@; else kak $@; fi }
 
-# Run Neovim with minimal config
-mvim() { $EDITOR -u $HOME/.config/nvim/min.vim $@; }
-
 # Convert ASCII string to HEX in reverse (Little-Endian) order
 a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\\x/g'; }
 
