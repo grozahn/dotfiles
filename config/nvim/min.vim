@@ -4,28 +4,9 @@
 "
 " Terminal toggle
 if has("nvim")
-    let g:term_buf = 0
-    let g:term_win = 0
-
-    function! TerminalToggle(height)
-        if win_gotoid(g:term_win)
-            hide
-        else
-            botright new
-            exec "resize " . a:height
-            try
-                exec "buffer " . g:term_buf
-            catch
-                call termopen($SHELL, {"detach": 0})
-                let g:term_buf = bufnr("")
-            endtry
-            startinsert!
-            let g:term_win = win_getid()
-        endif
-    endfunction
-
-    nnoremap <F4> :call TerminalToggle(12)<CR>
-    tnoremap <F4> <C-\><C-n>:call TerminalToggle(12)<CR>
+    nnoremap <silent> <F4> :botright new term://$SHELL<CR>
+    tnoremap <silent> <F4> <C-\><C-n> :bd!<CR>
+    autocmd TermOpen * startinsert! | setlocal nonumber norelativenumber | resize 14
 endif
 
 " Netrw toggle
