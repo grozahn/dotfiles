@@ -23,8 +23,9 @@ current_item_prefix = "$(magenta)$r"
 current_item_suffix = "$/r$(end)"
 
 ## Progress bar
-progressbar_look = "—● "
 # progressbar_look = "━  "
+# progressbar_look = "—● "
+progressbar_look = "━● "
 
 ## Misc progress bar Looks
 # progressbar_look = "=> "

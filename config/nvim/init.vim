@@ -99,7 +99,6 @@ set nu
 syntax enable
 set termguicolors
 colorscheme base16-tomorrow-night
-
 "}}}
 
 " Plugins config {{{
