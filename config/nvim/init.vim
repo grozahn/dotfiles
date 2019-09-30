@@ -45,6 +45,7 @@ call plug#end()
 if has("nvim")
     nnoremap <silent> <F4> :botright new term://$SHELL<CR>
     tnoremap <silent> <F4> <C-\><C-n> :bd!<CR>
+    tnoremap <silent> <S-F4> <C-\><C-n>
     autocmd TermOpen * startinsert! | setlocal nonumber norelativenumber | resize 14
 endif
 
