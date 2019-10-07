@@ -21,7 +21,7 @@ export PAGER='less'
 export EDITOR='vi'
 export NNN_CONTEXT_COLORS='3214'
 
-alias fetch='neofetch --ascii_distro netbsd'
+alias fetch='neofetch'
 alias shrc='$EDITOR $HOME/.bashrc'
 alias ls='ls --color=tty'
 alias nv='nvim'
