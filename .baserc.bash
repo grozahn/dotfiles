@@ -18,7 +18,7 @@ esac
 
 # Set default environment variables
 export PAGER='less'
-export EDITOR='vi'
+export EDITOR='vis'
 export NNN_CONTEXT_COLORS='3214'
 
 alias fetch='neofetch'

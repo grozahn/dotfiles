@@ -1,0 +1,12 @@
+[submodule "config/vis/plugins/vis-ctags"]
+	path = config/vis/plugins/vis-ctags
+	url = https://github.com/kupospelov/vis-ctags.git
+[submodule "config/vis/plugins/vis-fzf-open"]
+	path = config/vis/plugins/vis-fzf-open
+	url = https://github.com/guillaumecherel/vis-fzf-open.git
+[submodule "config/vis/plugins/vis-title"]
+	path = config/vis/plugins/vis-title
+	url = https://github.com/erf/vis-title.git
+[submodule "config/vis/plugins/vis-surround"]
+	path = config/vis/plugins/vis-surround
+	url = https://repo.or.cz/vis-surround.git
