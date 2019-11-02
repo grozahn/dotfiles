@@ -7,17 +7,17 @@ verbosity = 2
 # set to 0 to disable
 timeout = 1800 # seconds = 30 minutes
 
-[language.rust]
-filetypes = ["rust"]
-roots = ["Cargo.toml"]
-command = "rls"
-
 [language.python]
 filetypes = ["python"]
-roots = [""]
+roots = ["__init__.py", "setup.py"]
 command = "pyls"
 
 [language.c_cpp]
 filetypes = ["c", "cpp"]
 roots = ["compile_flags.txt", "compile_commands.json"]
 command = "clangd"
+
+[language.go]
+filetypes = ["go"]
+roots = ["go.mod"]
+command = "gopls"

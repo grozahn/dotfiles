@@ -108,14 +108,13 @@ colorscheme base16-tomorrow-night
 set noshowmode
 let g:airline_section_y = '%{&encoding} (%{&fileformat})'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 
 " NCM2 Config
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -126,7 +125,7 @@ set formatexpr=LanguageClient_textDocument_formatting()
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
-    \ 'rust':   ['rls'],
+    \ 'go':     ['gopls'],
     \ 'cpp':    ['clangd'],
     \ 'c':      ['clangd'],
 \ }
