@@ -1,3 +1,4 @@
+e cmd.pdc = pdg
+e asm.syntax = intel
 e scr.utf8 = true
 e scr.color = 1
-e asm.syntax = intel

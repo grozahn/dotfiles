@@ -19,5 +19,5 @@ command = "clangd"
 
 [language.go]
 filetypes = ["go"]
-roots = ["go.mod"]
+roots = ["go.mod", ".git", ".hg"]
 command = "gopls"

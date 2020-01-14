@@ -9,6 +9,7 @@ export TERMUX_ROOT='/data/data/com.termux/files'
 
 # Set default environment variables
 export EDITOR='kak'
+export NNN_CONTEXT_COLORS='3214'
 
 # Aliases
 alias sqlmap='python2.7 $HOME/pentest/sqlmap/sqlmap.py'
@@ -18,4 +19,5 @@ alias upd='apt update && apt upgrade'
 [ -f $HOME/.ssh/authorized_keys ] && sshd
 
 # Import Fuzzy Finder key bindings
+[ -d $TERMUX_ROOT/usr/share/fzf ] && source $TERMUX_ROOT/usr/share/fzf/completion.bash
 [ -d $TERMUX_ROOT/usr/share/fzf ] && source $TERMUX_ROOT/usr/share/fzf/key-bindings.bash

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ -z $# ]]; then
+    echo "Usage: $0 <margin>"
+    exit 1
+fi
+
+panel_size=$(xfconf-query -c xfce4-panel -p /panels/panel-1/sizee)
+[[ $? -eq 1 ]] && panel_size=0;
+
+margin_top=0
+[[ $1 -ne 0 ]] && margin_top=$(( $panel_size + $1 ))
+
+xfconf-query -c xfwm4 -p /general/margin_bottom -t int -s $1
+xfconf-query -c xfwm4 -p /general/margin_left -t int -s $1
+xfconf-query -c xfwm4 -p /general/margin_right -t int -s $1
+xfconf-query -c xfwm4 -p /general/margin_top -t int -s $margin_top

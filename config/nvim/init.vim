@@ -10,6 +10,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Tools
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'grozahn/nerdtree-file-icon-plugin', { 'on':  'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf.vim'
@@ -76,6 +77,7 @@ set smartindent
 
 " Filetype specific
 autocmd FileType make setlocal noexpandtab
+autocmd FileType go setlocal noexpandtab
 autocmd FileType python setlocal colorcolumn=80
 
 " Encoding
@@ -108,7 +110,7 @@ colorscheme base16-tomorrow-night
 set noshowmode
 let g:airline_section_y = '%{&encoding} (%{&fileformat})'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " NCM2 Config
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -133,7 +135,7 @@ let g:LanguageClient_serverCommands = {
 nmap <F5> :call LanguageClient_contextMenu()<CR>
 nmap <silent> F :call LanguageClient#textDocument_rename()<CR>
 nmap <silent> J :call LanguageClient#textDocument_signatureHelp()<CR>
-nmap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nmap <silent> <C-k> :call LanguageClient#textDocument_hover()<CR>
 nmap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nmap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
 
@@ -141,6 +143,9 @@ nmap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
 let NERDTreeMinimalUI = 1
 let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1
+
+let g:NERDTreeDirArrowExpandable = '🗂'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Fuzzy Finder
 let g:fzf_colors = {

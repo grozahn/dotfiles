@@ -28,8 +28,8 @@ plug "ul/kak-lsp" do %{
 
 plug "andreyorst/smarttab.kak" %{
     set-option global softtabstop 4
-    hook global WinSetOption filetype=(go|markdown|kak|python|scheme|sh|c|cpp) expandtab
-    hook global WinSetOption filetype=(makefile) noexpandtab
+    hook global WinSetOption filetype=(markdown|kak|python|sh|c|cpp) expandtab
+    hook global WinSetOption filetype=(go|makefile) noexpandtab
 }
 
 plug "occivink/kakoune-gdb"

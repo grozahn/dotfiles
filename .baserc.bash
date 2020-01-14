@@ -18,12 +18,13 @@ esac
 
 # Set default environment variables
 export PAGER='less'
-export EDITOR='vis'
-export NNN_CONTEXT_COLORS='3214'
+export EDITOR='vi'
 
 alias fetch='neofetch'
 alias shrc='$EDITOR $HOME/.bashrc'
 alias ls='ls --color=tty'
+alias kns='kak -s $(basename $PWD)'  # kakoune new session
+alias tns='tmux new-session -s $(basename $PWD)'  # tmux new session
 alias nv='nvim'
 
 # Kakoune attach

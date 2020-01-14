@@ -78,6 +78,8 @@ endfunction
 
 " Common settings {{{
 "
+set path+=**
+
 set noswapfile
 set nobackup
 
@@ -92,6 +94,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Filetype specific
 autocmd FileType make setlocal noexpandtab
+autocmd FileType go setlocal noexpandtab
 autocmd FileType python setlocal colorcolumn=80
 
 " Encoding
