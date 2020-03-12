@@ -1,5 +1,5 @@
 #!/bin/bash
-CONFIG=${HOME}/.config/i3/i3scrot.conf
+CONFIG=${HOME}/.i3scrot.conf
 
 if ! [ -f ${CONFIG} ] ; then
     echo "SCREENSHOTS_DIR=\${HOME}/Pictures/Screenshots" > ${CONFIG}
@@ -17,7 +17,7 @@ fi
 APPNAME="i3scrot"
 SSDIR=${SCREENSHOTS_DIR}
 IMGNAME=Screenshot_$(date "+%Y-%m-%d_%H-%M-%S").${EXT}
-SSPATH=${IMGNAME}
+SSPATH=${SCREENSHOTS_DIR}/${IMGNAME}
 
 # Rework SSPATH if path given
 if ! [ -z ${2+x} ] ; then

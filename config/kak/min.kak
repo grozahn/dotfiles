@@ -18,7 +18,7 @@ def -hidden insert-bs %{
 }
 
 # Default colorscheme
-colorscheme tomorrow-night
+colorscheme base16_ocean
 
 # Highlighters
 hook global KakBegin .* %{
@@ -28,13 +28,25 @@ hook global KakBegin .* %{
     add-highlighter global/wrap       wrap -word -indent -marker ↪
 }
 
+# convert between snake_case and camelCase
+def to-camelcase %{
+    exec '`s[-_<space>]<ret>d~<a-i>w'
+}
+
+def to-snakecase %{
+    exec '<a-:><a-;>s-|[a-z][A-Z]<ret>;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`'
+}
+
 # Mappings
+map global user s :b\ <tab>
+map global user d :buffer-next<ret>
+map global user a :buffer-previous<ret>
+map global user q :delete-buffer!<ret>
+
 map global normal '#' :comment-line<ret>
 map global normal '@' :comment-block<ret>
-map global normal '<c-s>' :b\ <tab>
-map global normal '<c-d>' :buffer-next<ret>
-map global normal '<c-a>' :buffer-previous<ret>
-map global normal '<c-q>' :delete-buffer!<ret>
+
+map global user y '<a-|>xsel -ib<ret>'
 
 # Completion by Tab key
 hook global InsertCompletionShow .* %{map   window insert <tab> <c-n>; map   window insert <s-tab> <c-p>}

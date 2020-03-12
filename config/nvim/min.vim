@@ -132,7 +132,8 @@ set nu
 " Style
 syntax enable
 set termguicolors
-colorscheme base16-tomorrow-night
+" colorscheme base16-tomorrow-night
+colorscheme base16-ocean
 
 " Statusline
 set statusline=

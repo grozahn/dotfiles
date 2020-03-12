@@ -20,11 +20,13 @@ esac
 export PAGER='less'
 export EDITOR='vi'
 
-alias fetch='neofetch'
+alias fetch='neofetch --ascii_distro netbsd'
 alias shrc='$EDITOR $HOME/.bashrc'
 alias ls='ls --color=tty'
+alias ftpd='python -m pyftpdlib -w'
 alias kns='kak -s $(basename $PWD)'  # kakoune new session
 alias tns='tmux new-session -s $(basename $PWD)'  # tmux new session
+alias vim='nvim'
 alias nv='nvim'
 
 # Kakoune attach
