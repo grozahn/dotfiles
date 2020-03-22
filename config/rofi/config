@@ -1,10 +1,9 @@
-rofi.theme: /home/andrey/.config/rofi/themes/flat-tomorrow.rasi
-
 rofi.font:                           Noto Sans 11
 rofi.sidebar-mode:                   false
 rofi.show-icons:                     true
 rofi.width:                          540
-rofi.lines:                          10
+rofi.lines:                          8
 rofi.combi-hide-mode-prefix:         true
 rofi.display-combi:                  run
 rofi.combi-modi:                     drun,run
+rofi.theme: /home/andrey/.config/rofi/themes/breeze-light.rasi
