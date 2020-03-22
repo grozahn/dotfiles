@@ -102,10 +102,10 @@ set encoding=utf-8
 set termencoding=utf-8
 
 " Tabline mappings
-nnoremap <C-a> :tabprevious<CR>
-nnoremap <C-d> :tabnext<CR>
-nnoremap <C-s> :tabnew<CR>
-nnoremap <C-q> :tabclose<CR>
+nnoremap ,a :tabprevious<CR>
+nnoremap ,d :tabnext<CR>
+nnoremap ,s :tabnew<CR>
+nnoremap ,q :tabclose<CR>
 
 " Complete function mappings
 let smart_complete = 1

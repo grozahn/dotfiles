@@ -47,6 +47,7 @@ map global normal '#' :comment-line<ret>
 map global normal '@' :comment-block<ret>
 
 map global user y '<a-|>xsel -ib<ret>'
+map global user c '<a-|>wl-copy<ret>'
 
 # Completion by Tab key
 hook global InsertCompletionShow .* %{map   window insert <tab> <c-n>; map   window insert <s-tab> <c-p>}

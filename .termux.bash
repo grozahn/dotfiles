@@ -5,7 +5,7 @@ export BASH_THEME='gentoo'
 source $HOME/.baserc.bash
 
 # Set Termux root directory
-export TERMUX_ROOT='/data/data/com.termux/files'
+export TERMUX_PREFIX='/data/data/com.termux/files'
 export BIN=$TERMUX_PREFIX/usr/bin
 export R=$TERMUX_PREFIX
 

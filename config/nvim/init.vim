@@ -10,7 +10,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Tools
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'grozahn/nerdtree-file-icon-plugin', { 'on':  'NERDTreeToggle' }
+" Plug 'grozahn/nerdtree-file-icon-plugin', { 'on':  'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf.vim'
@@ -145,8 +145,8 @@ let NERDTreeMinimalUI = 1
 let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1
 
-let g:NERDTreeDirArrowExpandable = '🗂'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '🗂'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Fuzzy Finder
 let g:fzf_colors = {
@@ -172,10 +172,10 @@ nnoremap <F1>  :AirlineToggle<CR>
 nnoremap <F2>  :TagbarToggle<CR>
 nnoremap <F3>  :NERDTreeToggle<CR>
 
-nnoremap <C-s> :buffer <Tab>
-nnoremap <C-a> :bprevious<CR>
-nnoremap <C-d> :bnext<CR>
-nnoremap <C-q> :bdelete!<CR>
+nnoremap ,s :buffer <Tab>
+nnoremap ,a :bprevious<CR>
+nnoremap ,d :bnext<CR>
+nnoremap ,q :bdelete!<CR>
 
 " Tagbar
 let g:tagbar_compact = 1
