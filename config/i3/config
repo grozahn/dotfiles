@@ -33,7 +33,7 @@ font pango:Noto Sans 10
 #
     default_border pixel 2
     gaps inner 20
-    smart_gaps on
+    # smart_gaps on
     smart_borders on
 
 ### Key bindings
@@ -74,6 +74,9 @@ font pango:Noto Sans 10
     bindsym Print --release exec --no-startup-id screengrab -f
     bindsym $mod+Print --release exec --no-startup-id screengrab -a
     bindsym $mod+Shift+Print --release exec --no-startup-id screengrab -r
+
+    # lock screen
+    bindsym $mod+Shift+z exec xdg-screensaver lock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
