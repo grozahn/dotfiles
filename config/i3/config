@@ -239,15 +239,15 @@ font pango:Noto Sans 10
 
 ### Define used colors
 #
-# Based on Base16 Ocean colors
-set $base00 #2b303b
-set $base01 #343d46
-set $base03 #65737e
-set $base05 #c0c5ce
-set $base07 #eff1f5
+# Based on Base16 Grayscale Dark colors
+set $base00 #101010
+set $base01 #252525
+set $base03 #525252
+set $base05 #b9b9b9
+set $base07 #f7f7f7
+set $base0D #686868
 set $base08 #bf616a
 set $base0C #868686
-set $base0D #8fa1b3
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border

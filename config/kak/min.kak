@@ -18,7 +18,7 @@ def -hidden insert-bs %{
 }
 
 # Default colorscheme
-colorscheme base16_ocean
+colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{
@@ -61,7 +61,7 @@ hook global WinSetOption filetype=(c|cpp) %{
 
 # Python completion and linting
 hook global WinSetOption filetype=(python) %{
-    set-option global lintcmd flake8;
+    set window lintcmd flake8;
     lint-enable;
     jedi-enable-autocomplete
 }
