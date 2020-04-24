@@ -12,12 +12,15 @@ plug "ul/kak-lsp" do %{
     hook global WinSetOption filetype=(c|cpp|go|python) %{
         map window user "l" ": enter-user-mode lsp<ret>" -docstring "LSP mode"
         lsp-enable-window
-        lsp-auto-signature-help-enable
 
+        # Language Client mappings
         map global normal '<c-k>' ': lsp-hover<ret>'
         map global insert '<c-k>' '<a-;>: lsp-hover<ret>'
+
+        # lsp-auto settings
         lsp-auto-hover-disable
         lsp-auto-hover-insert-mode-disable
+        lsp-auto-signature-help-enable
 
         set-option window lsp_hover_anchor true
         set-face window DiagnosticError default+u
@@ -40,7 +43,7 @@ set-option global indentwidth 4
 
 # Default colorscheme
 # colorscheme tomorrow-night
-colorscheme base16_ocean
+colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{
@@ -89,17 +92,19 @@ define-command -docstring 'Invoke fzf to open a file' -params 0 fzf-edit %{
 }
 
 # Mappings
-map global user s :b\ <tab>
-map global user d :buffer-next<ret>
-map global user a :buffer-previous<ret>
-map global user q :delete-buffer!<ret>
-map global user e :fzf-edit<ret>
+map global user s :b\ <tab> -docstring "Select buffer"
+map global user d :buffer-next<ret> -docstring "Next buffer"
+map global user a :buffer-previous<ret> -docstring "Previous buffer"
+map global user q :delete-buffer!<ret> -docstring "Delete buffer"
+map global user e :fzf-edit<ret> -docstring "Select file using Fuzzy finder"
+
+map global user m :man<ret> -docstring "Open Man page"
+map global user y '<a-|>xsel -ib<ret>' -docstring "Yank selection to system clipboard"
+map global user c '<a-|>wl-copy<ret>' -docstring "Yank selection to system clipboard (Wayland)"
 
 map global normal '#' :comment-line<ret>
 map global normal '@' :comment-block<ret>
 
-map global user y '<a-|>xsel -ib<ret>'
-map global user c '<a-|>wl-copy<ret>'
 
 # Completion by Tab key
 hook global InsertCompletionShow .* %{map   window insert <tab> <c-n>; map   window insert <s-tab> <c-p>}

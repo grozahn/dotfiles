@@ -102,7 +102,7 @@ set nu
 syntax enable
 set termguicolors
 " colorscheme base16-tomorrow-night
-colorscheme base16-ocean
+colorscheme base16-gruvbox-dark-hard
 "}}}
 
 " Plugins config {{{
@@ -134,11 +134,11 @@ let g:LanguageClient_serverCommands = {
 \ }
 
 nmap <F5> :call LanguageClient_contextMenu()<CR>
-nmap <silent> F :call LanguageClient#textDocument_rename()<CR>
-nmap <silent> J :call LanguageClient#textDocument_signatureHelp()<CR>
-nmap <silent> <C-k> :call LanguageClient#textDocument_hover()<CR>
-nmap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nmap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
+nmap <silent> \n :call LanguageClient#textDocument_rename()<CR>
+nmap <silent> \a :call LanguageClient#textDocument_hover()<CR>
+nmap <silent> \d :call LanguageClient#textDocument_definition()<CR>
+nmap <silent> \r :call LanguageClient#textDocument_references()<CR>
+nmap <silent> \s :call LanguageClient#textDocument_documentSymbol()<CR>
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -167,15 +167,17 @@ let g:fzf_colors = {
 
 let g:fzf_tags_command = 'ctags -R'
 
-" Mapping
-nnoremap <F1>  :AirlineToggle<CR>
-nnoremap <F2>  :TagbarToggle<CR>
-nnoremap <F3>  :NERDTreeToggle<CR>
+" User mappings
+nnoremap <F1> :AirlineToggle<CR>
+nnoremap <F2> :TagbarToggle<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
 
 nnoremap ,s :buffer <Tab>
 nnoremap ,a :bprevious<CR>
 nnoremap ,d :bnext<CR>
 nnoremap ,q :bdelete!<CR>
+vnoremap ,m :Man<CR>
+vnoremap ,y "+y
 
 " Tagbar
 let g:tagbar_compact = 1

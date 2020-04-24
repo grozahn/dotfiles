@@ -12,7 +12,7 @@ set $term st
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu "rofi -show combi -modi combi,calc"
+set $menu "rofi -show combi -modi combi"
 
 ### Set main font
 font pango:Noto Sans 10
@@ -37,6 +37,7 @@ font pango:Noto Sans 10
 # Windows behavior
 #
     default_border pixel 2
+    default_floating_border pixel 4
     gaps inner 12
     # smart_gaps on
     smart_borders on
@@ -246,6 +247,7 @@ set $base03 #525252
 set $base05 #b9b9b9
 set $base07 #f7f7f7
 set $base0D #686868
+
 set $base08 #bf616a
 set $base0C #868686
 

@@ -101,11 +101,13 @@ autocmd FileType python setlocal colorcolumn=80
 set encoding=utf-8
 set termencoding=utf-8
 
-" Tabline mappings
+" User mappings
 nnoremap ,a :tabprevious<CR>
 nnoremap ,d :tabnext<CR>
 nnoremap ,s :tabnew<CR>
 nnoremap ,q :tabclose<CR>
+vnoremap ,m :Man<CR>
+vnoremap ,y "+y
 
 " Complete function mappings
 let smart_complete = 1
@@ -133,7 +135,7 @@ set nu
 syntax enable
 set termguicolors
 " colorscheme base16-tomorrow-night
-colorscheme base16-ocean
+colorscheme base16-gruvbox-dark-hard
 
 " Statusline
 set statusline=
