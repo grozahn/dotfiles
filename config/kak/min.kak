@@ -42,7 +42,6 @@ map global user s :b\ <tab> -docstring "Select buffer"
 map global user d :buffer-next<ret> -docstring "Next buffer"
 map global user a :buffer-previous<ret> -docstring "Previous buffer"
 map global user q :delete-buffer!<ret> -docstring "Delete buffer"
-map global user e :fzf-edit<ret> -docstring "Select file using Fuzzy finder"
 
 map global user m :man<ret> -docstring "Open Man page"
 map global user y '<a-|>xsel -ib<ret>' -docstring "Yank selection to system clipboard"
