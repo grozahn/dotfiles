@@ -29,21 +29,6 @@ endfunction
 
 nnoremap <F3> :call NetrwToggle()<CR>
 
-" Auto (Omni) completion
-function! SmartTabComplete()
-    if (strpart(getline('.'), col('.') - 2, 1) !~ '\v(\w|\.|\/|\:)')
-        return "\<tab>"
-    endif
-    let l:line = matchstr(strpart(getline('.'), - 1, col('.') + 1), "[^ \t]*$")
-    if match(l:line, '\.') != -1
-        return "\<C-X>\<C-O>"
-    elseif match(l:line, '\/') != -1
-        return "\<C-X>\<C-F>"
-    else
-        return "\<C-X>\<C-P>"
-    endif
-endfunction
-
 " Keyword completion
 function! SuperTab()
     let l:part = strpart(getline('.'),col('.')-2,1)
@@ -52,16 +37,6 @@ function! SuperTab()
     else
         return "\<C-n>"
     endif
-endfunction
-
-" Statusline
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-    let l:branchname = GitBranch()
-    return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
 " Strip trailing whitespaces
@@ -90,10 +65,10 @@ filetype plugin indent on
 set smartindent
 
 set completeopt=longest,menuone
-set omnifunc=syntaxcomplete#Complete
 
 " Filetype specific
 autocmd FileType make setlocal noexpandtab
+autocmd FileType c,cpp setlocal noexpandtab
 autocmd FileType go setlocal noexpandtab
 autocmd FileType python setlocal colorcolumn=80
 
@@ -109,15 +84,7 @@ nnoremap ,q :tabclose<CR>
 vnoremap ,m :Man<CR>
 vnoremap ,y "+y
 
-" Complete function mappings
-let smart_complete = 1
-
-if smart_complete
-    inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<C-r>=SmartTabComplete()<CR>"
-    inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-else
-    inoremap <Tab> <C-R>=SuperTab()<CR>
-endif
+inoremap <Tab> <C-R>=SuperTab()<CR>
 
 " Tab key
 set tabstop=4
@@ -134,13 +101,12 @@ set nu
 " Style
 syntax enable
 set termguicolors
-" colorscheme base16-tomorrow-night
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-tomorrow-night
+" colorscheme base16-gruvbox-dark-hard
 
 " Statusline
 set statusline=
 set statusline+=%#Title#
-set statusline+=%{StatuslineGit()}
 set statusline+=%#LineNr#
 set statusline+=%#Visual#
 set statusline+=\ %f\ 

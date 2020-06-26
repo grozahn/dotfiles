@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term st
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -27,7 +27,6 @@ font pango:Noto Sans 10
     for_window [window_role="Preferences"] floating enable
     for_window [window_role="dialog"] floating enable
     for_window [window_role="menu"] floating enable
-    for_window [instance="mate-calc"] floating enable
 
     # Java and Wine
     for_window [instance="sun-awt-X11-XFramePeer"] floating enable
@@ -64,6 +63,9 @@ font pango:Noto Sans 10
     # open mixer
     bindsym $mod+m exec $term -e alsamixer 
 
+    # open secondary terminal
+    bindsym $mod+t exec gnome-terminal
+
     # open task manager
     bindsym $mod+Escape exec xfce4-taskmanager
 
@@ -93,6 +95,9 @@ font pango:Noto Sans 10
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
     floating_modifier $mod
+
+    # Center floating window
+    bindsym $mod+c move position center
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -239,16 +244,45 @@ font pango:Noto Sans 10
     }
 
 ### Define used colors
+# Based on base16-tomorrow-night colors
+set $base00 #1d1f21
+set $base01 #282a2e
+set $base03 #969896
+set $base05 #c5c8c6
+set $base07 #ffffff
+set $base0D #373b41
 
-# class                 border  bground text    indicator child_border
-client.focused          #E0E0E0 #E0E0E0 #212121 #D6D6D6   #868686
-client.focused_inactive #D6D6D6 #D6D6D6 #616161 #525252   #252525
-client.unfocused        #C5C8C6 #BFBFBF #616161 #252525   #252525
-client.urgent           #BF616A #BF616A #FFFFFF #BF616A   #BF616A
-client.placeholder      #BFBFBF #BFBFBF #616161 #BFBFBF   #BFBFBF
-client.background       #E0E0E0
+set $base08 #bf616a
+set $base0C #868686
 
+bar {
+    output LVDS1
+    position top
+    status_command py3status -c ~/.config/i3/i3status.conf
+
+    colors {
+        background $base00
+        separator  $base01
+        statusline $base05
+
+        # State             Border  BG      Text
+        focused_workspace   $base0D $base0D $base05
+        active_workspace    $base0D $base03 $base00
+        inactive_workspace  $base0D $base01 $base03
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base0D $base01 $base05
+    }
+}
+
+
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base0D $base0D $base05 $base0D $base0C
+client.focused_inactive $base01 $base0D $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base0C $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base0C $base00 $base00
+client.background       $base07
 
 ### Autostart
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id chwal restore
 exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:caps_toggle

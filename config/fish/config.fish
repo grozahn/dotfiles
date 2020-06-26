@@ -1,10 +1,7 @@
 ###
-# Fish settings
+# Exports
 ###
-# source ~/.config/fish/themes/theme_gruvbox.fish
-
-# Apply theme
-# theme_gruvbox dark hard
+if test -z $TMUX; set -x TERM 'xterm-256color'; end
 
 ###
 # Import main config

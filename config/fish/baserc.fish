@@ -1,8 +1,6 @@
 ###
 # Exports
 ###
-set -x TERM 'xterm-256color'
-
 set -x PAGER 'less'
 set -x EDITOR 'vi'
 
@@ -15,26 +13,34 @@ alias ls='ls --color=tty'
 alias ftpd='python -m pyftpdlib -w'
 alias kns='kak -s (basename $PWD)'  # kakoune new session
 alias tns='tmux new-session -s (basename $PWD)'  # tmux new session
-alias vim='nvim'
 alias nv='nvim'
 
 ###
 # User defined functions
 ###
 function fh --description "List command history with fzf"
-    eval (history | fzf +s)
+    set -l cmd (history | fzf +s);
+    commandline -- "$cmd"
 end
 
 function cdf --description "Do cd using fzf"
     cd (find -type d -not -path '*/\.*' | fzf +s)
 end
 
-function kat --description "Attach to kakoune session"
+function kat --description "Attach to Kakoune session"
     set a (kak -l)
     if test "$a" != ''
         kak -c (kak -l | fzf) $argv
     else
-        kak $argv
+        kak -s (basename $PWD) $argv
+    end
+end
+
+function tat --description "Attach to tmux session"
+    if test (tmux ls | wc -l) -ge 1
+        tmux attach -t (tmux ls | fzf | sed 's/:.*$//g')
+    else
+        tmux attach || tmux new
     end
 end
 
@@ -47,14 +53,6 @@ end
 
 function ingrep --description "Recursive grep"
     grep -rnI $argv[2] -e $argv[1] | fzf
-end
-
-function tms --description "Tmux session chooser"
-    if test (tmux ls | wc -l) -ge 1
-        tmux attach -t (tmux ls | fzf | sed 's/:.*$//g')
-    else
-        tmux attach || tmux new
-    end
 end
 
 function use_proxy --description "Set proxy variables"

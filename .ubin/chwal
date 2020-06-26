@@ -1,0 +1,29 @@
+#!/bin/bash
+
+wallpaper_selection() {
+    zenity --title 'Select wallpaper file' \
+           --file-selection \
+           --file-filter='Image files (jpg, png) | *.jpg *.png' \
+           --file-filter='All files | *'
+}
+
+[ $# -eq 0 ] && \
+    echo "Usage: "`basename $0`" <set|restore>" && exit 1
+
+case $1 in
+    'set')
+        WAL=`wallpaper_selection`
+        [ $? -ne 0 ] && \
+            zenity --error --text 'No wallpaper selected' && exit 1
+
+        feh --bg-fill "${WAL}"
+        [ $? -eq 0 ] && \
+            gsettings set org.gnome.desktop.screensaver picture-uri "file://${WAL}"
+    ;;
+    'restore')
+        WAL=`gsettings get org.gnome.desktop.screensaver picture-uri`
+        feh --bg-fill "${WAL:8:-1}"
+    ;;
+    *)
+        exit 1
+esac

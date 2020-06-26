@@ -31,9 +31,13 @@ plug "ul/kak-lsp" do %{
 
 plug "andreyorst/smarttab.kak" %{
     set-option global softtabstop 4
-    hook global WinSetOption filetype=(markdown|kak|python|sh|c|cpp) expandtab
+
+    hook global WinSetOption filetype=(python|kak|sh|lisp|markdown) expandtab
     hook global WinSetOption filetype=(go|makefile) noexpandtab
+    hook global WinSetOption filetype=(c|cpp) smarttab
 }
+
+plug "andreyorst/pmanage.kak"
 
 plug "occivink/kakoune-gdb"
 
@@ -42,8 +46,8 @@ set-option global tabstop 4
 set-option global indentwidth 4
 
 # Default colorscheme
-# colorscheme tomorrow-night
-colorscheme base16-gruvbox-dark-hard
+colorscheme tomorrow-night
+# colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{

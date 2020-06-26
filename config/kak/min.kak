@@ -18,7 +18,8 @@ def -hidden insert-bs %{
 }
 
 # Default colorscheme
-colorscheme base16-gruvbox-dark-hard
+colorscheme tomorrow-night
+# colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{
@@ -56,6 +57,8 @@ hook global InsertCompletionHide .* %{unmap window insert <tab> <c-n>; unmap win
 
 # Clang completion
 hook global WinSetOption filetype=(c|cpp) %{
+    map global goto d "<esc>:ctags-search<ret>" -docstring 'Jump to tag'
+
     ctags-enable-autocomplete;
     clang-enable-autocomplete
 }

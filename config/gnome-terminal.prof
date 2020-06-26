@@ -1,0 +1,17 @@
+use-theme-background: false
+background-color: '#1d2021'
+bold-color: '#ebdbb2'
+bold-color-same-as-fg: true
+bold-is-bright: true
+cursor-background-color: '#adadad'
+cursor-blink-mode: 'on'
+cursor-colors-set: true
+cursor-foreground-color: '#1d2021'
+cursor-shape: 'ibeam'
+font: 'Ubuntu Mono 12'
+foreground-color: '#ebdbb2'
+palette:
+['#282828','#cc241d','#98971a','#d79921','#458588','#b16286','#689d6a','#a89984','#928374','#fb4934','#b8bb26','#fabd2f','#83a598','#d3869b','#8ec07c','#ebdbb2']
+scrollbar-policy: 'never'
+use-system-font: false
+use-theme-colors: false
