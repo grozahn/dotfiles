@@ -1,0 +1,64 @@
+icons = "awesome"
+
+[theme.overrides]
+idle_bg = "#282a2e"
+idle_fg = "#c5c8c6"
+info_bg = "#8abeb7"
+info_fg = "#282a2e"
+good_bg = "#b5bd68"
+good_fg = "#282a2e"
+warning_bg = "#f0c674"
+warning_fg = "#282a2e"
+critical_bg = "#cc6666"
+critical_fg = "#282a2e"
+# separator = "\ue0b2"
+separator = ""
+separator_bg = "auto"
+separator_fg = "auto"
+alternating_tint_bg = "#000000"
+alternating_tint_fg = "#000000"
+
+[[block]]
+block = "custom"
+interval = 1
+on_click = "xkblayout-state set +1"
+command = "xkblayout-state print %s"
+
+[[block]]
+block = "temperature"
+interval = 10
+format = "{average}°"
+collapsed = false
+
+[[block]]
+block = "memory"
+interval = 5
+format_mem = "{Mug}G"
+clickable = false
+display_type = "memory"
+
+[[block]]
+block = "net"
+interval = 5
+on_click = "kitty -e nmtui"
+device = "wlp3s0"
+use_bits = false
+speed_down = true
+speed_up = false
+hide_missing = true
+
+[[block]]
+block = "sound"
+on_click = "pavucontrol-qt"
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}%"
+device = "BAT1"
+
+[[block]]
+block = "time"
+interval = 60
+on_click = "zenity --calendar"
+format = "%a %d, %H:%M"

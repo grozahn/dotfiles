@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PROP_NAME='libinput Natural Scrolling Enabled'
+
+if [[ $# -eq 1 ]]; then
+    case $1 in
+        disable)
+            state=0
+            ;;
+        enable)
+            state=1
+            ;;
+    esac
+
+    xinput set-prop "$(xinput list --name-only | grep "Touchpad")" "$PROP_NAME" $state
+else
+    echo "Usage: natural-scrolling <disable|enable>"
+    exit 1
+fi

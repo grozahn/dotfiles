@@ -8,9 +8,9 @@ set -x EDITOR 'vi'
 # Aliases
 ###
 alias fetch='neofetch --ascii_distro netbsd'
-alias shrc='$EDITOR $HOME/.bashrc'
 alias ls='ls --color=tty'
-alias ftpd='python -m pyftpdlib -w'
+alias pyftpd='python3 -m pyftpdlib -w'
+alias pyhttpd='python3 -m http.server 8080'
 alias kns='kak -s (basename $PWD)'  # kakoune new session
 alias tns='tmux new-session -s (basename $PWD)'  # tmux new session
 alias nv='nvim'

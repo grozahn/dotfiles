@@ -8,13 +8,17 @@ wallpaper_selection() {
 }
 
 [ $# -eq 0 ] && \
-    echo "Usage: "`basename $0`" <set|restore>" && exit 1
+    echo "Usage: "`basename $0`" <set|restore> [wallpaper]" && exit 1
 
 case $1 in
     'set')
-        WAL=`wallpaper_selection`
-        [ $? -ne 0 ] && \
-            zenity --error --text 'No wallpaper selected' && exit 1
+        if [ $# -eq 2 ] && [ -f "$2" ]; then
+            WAL="$PWD/$2"
+        else
+            WAL=`wallpaper_selection`
+            [ $? -ne 0 ] && \
+                zenity --error --text 'No wallpaper selected' && exit 1
+        fi
 
         feh --bg-fill "${WAL}"
         [ $? -eq 0 ] && \

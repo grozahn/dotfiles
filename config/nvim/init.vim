@@ -13,14 +13,16 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'grozahn/nerdtree-file-icon-plugin', { 'on':  'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf.vim'
 
 " Edit
 Plug 'matze/vim-move'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'raimondi/delimitmate'
 
 " Highlight
-Plug 'kelwin/vim-smali'
+" Plug 'kelwin/vim-smali'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Language Client
@@ -101,8 +103,8 @@ set nu
 " Style
 syntax enable
 set termguicolors
-" colorscheme base16-tomorrow-night
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-tomorrow-night
+" colorscheme base16-gruvbox-dark-hard
 "}}}
 
 " Plugins config {{{
@@ -111,7 +113,7 @@ colorscheme base16-gruvbox-dark-hard
 set noshowmode
 let g:airline_section_y = '%{&encoding} (%{&fileformat})'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 
 " NCM2 Config
 autocmd BufEnter * call ncm2#enable_for_buffer()

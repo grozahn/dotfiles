@@ -1,14 +1,20 @@
+# i3 config file (v4)
+
 ### Variables
 #
 # Logo key. Use $mod for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term kitty
+set $term2 gnome-terminal
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -48,6 +54,9 @@ font pango:Noto Sans 10
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Start a secondary terminal
+    bindsym $mod+Shift+Return exec $term2
+
     # Kill focused window
     bindsym $mod+q kill
 
@@ -63,9 +72,6 @@ font pango:Noto Sans 10
     # open mixer
     bindsym $mod+m exec $term -e alsamixer 
 
-    # open secondary terminal
-    bindsym $mod+t exec gnome-terminal
-
     # open task manager
     bindsym $mod+Escape exec xfce4-taskmanager
 
@@ -79,15 +85,18 @@ font pango:Noto Sans 10
     bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
     # screenshots
-    bindsym Print --release exec --no-startup-id screengrab -f
-    bindsym $mod+Print --release exec --no-startup-id screengrab -a
-    bindsym $mod+Shift+Print --release exec --no-startup-id screengrab -r
+    bindsym Print --release exec --no-startup-id mate-screenshot
+    bindsym $mod+Print --release exec --no-startup-id mate-screenshot -w
+    bindsym $mod+Shift+Print --release exec --no-startup-id mate-screenshot -a
 
     # configure display outputs
     bindsym $mod+p exec lxqt-config-monitor
 
     # lock screen
     bindsym $mod+Shift+z exec xdg-screensaver lock
+
+    # leave session
+    bindsym $mod+Delete exec lxqt-leave
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -178,6 +187,18 @@ font pango:Noto Sans 10
     # Move focus to the parent container
     bindsym $mod+a focus parent
 #
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+plus scratchpad show
+#
 # Resizing containers:
 #
     mode "resize" {
@@ -252,13 +273,16 @@ set $base05 #c5c8c6
 set $base07 #ffffff
 set $base0D #373b41
 
-set $base08 #bf616a
+set $base08 #cc6666
 set $base0C #868686
 
 bar {
-    output LVDS1
+    output LVDS-1
     position top
-    status_command py3status -c ~/.config/i3/i3status.conf
+    # font xft:Noto Sans, FontAwesome, PowerlineSymbols 10
+    font xft:Ubuntu Mono, FontAwesome 11
+
+    status_command i3status-rs ~/.config/i3/status.toml
 
     colors {
         background $base00
@@ -284,5 +308,5 @@ client.placeholder      $base00 $base00 $base0C $base00 $base00
 client.background       $base07
 
 ### Autostart
-exec --no-startup-id chwal restore
+exec --no-startup-id xset -dpms
 exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:caps_toggle
