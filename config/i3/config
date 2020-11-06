@@ -110,6 +110,9 @@ font pango:Noto Sans 10
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+
+    # Reload the Polybar configuration file
+    bindsym $mod+Shift+p exec pkill -USR1 polybar
 #
 # Moving around:
 #
@@ -266,12 +269,14 @@ font pango:Noto Sans 10
 
 ### Define used colors
 # Based on base16-tomorrow-night colors
+#
 set $base00 #1d1f21
 set $base01 #282a2e
 set $base03 #969896
 set $base05 #c5c8c6
 set $base07 #ffffff
 set $base0D #373b41
+set $base0E #151516
 
 set $base08 #cc6666
 set $base0C #868686
@@ -300,13 +305,15 @@ bar {
 
 
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base0D $base0D $base05 $base0D $base0C
-client.focused_inactive $base01 $base0D $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base0C $base01 $base01
+client.focused          $base0D $base0D $base05 $base0D $base0D
+client.focused_inactive $base01 $base0D $base05 $base03 $base0E
+client.unfocused        $base01 $base00 $base0C $base01 $base0E
 client.urgent           $base08 $base08 $base00 $base08 $base08
 client.placeholder      $base00 $base00 $base0C $base00 $base00
 client.background       $base07
 
 ### Autostart
+exec --no-startup-id chwal restore
+exec --no-startup-id polybar primary
 exec --no-startup-id xset -dpms
 exec --no-startup-id setxkbmap -layout us,ru,ua -option grp:caps_toggle
