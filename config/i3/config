@@ -12,13 +12,8 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term kitty
-set $term2 gnome-terminal
-
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu "rofi -show combi -modi combi"
+set $term0 gnome-terminal
+set $term1 kitty
 
 ### Set main font
 font pango:Noto Sans 10
@@ -51,26 +46,29 @@ font pango:Noto Sans 10
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Return exec $term
+    # start a terminal
+    bindsym $mod+Return exec $term0
 
-    # Start a secondary terminal
+    # start a secondary terminal
     bindsym $mod+Shift+Return exec $term2
 
-    # Kill focused window
+    # kill focused window
     bindsym $mod+q kill
 
-    # Start your launcher
-    bindsym $mod+x exec $menu
+    # open applications launcher
+    bindsym $mod+x exec "rofi -show drun -modi drun -config ~/.config/rofi/modes/drun.rasi"
+
+    # open terminal commands launcher
+    bindsym $mod+comma exec "rofi -show run -modi run -config ~/.config/rofi/modes/run.rasi"
 
     # open window switcher
-    bindsym $mod+Tab exec "rofi -show window -modi window"
+    bindsym $mod+Tab exec "rofi -show window -modi window -config ~/.config/rofi/modes/window.rasi"
 
-    # open network connections editor
-    bindsym $mod+n exec $term -e nmtui
+    # open network connections
+    bindsym $mod+n exec $term -e nmtui-connect
 
     # open mixer
-    bindsym $mod+m exec $term -e alsamixer 
+    bindsym $mod+m exec $term -e alsamixer
 
     # open task manager
     bindsym $mod+Escape exec xfce4-taskmanager
@@ -280,29 +278,6 @@ set $base0E #151516
 
 set $base08 #cc6666
 set $base0C #868686
-
-bar {
-    output LVDS-1
-    position top
-    # font xft:Noto Sans, FontAwesome, PowerlineSymbols 10
-    font xft:Ubuntu Mono, FontAwesome 11
-
-    status_command i3status-rs ~/.config/i3/status.toml
-
-    colors {
-        background $base00
-        separator  $base01
-        statusline $base05
-
-        # State             Border  BG      Text
-        focused_workspace   $base0D $base0D $base05
-        active_workspace    $base0D $base03 $base00
-        inactive_workspace  $base0D $base01 $base03
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base0D $base01 $base05
-    }
-}
-
 
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base0D $base0D $base05 $base0D $base0D

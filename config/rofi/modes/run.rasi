@@ -1,0 +1,24 @@
+@import "config.rasi"
+
+listview {
+    layout: vertical;
+    lines: 8;
+    columns: 1;
+    cycle: true;
+    scrollbar: true;
+}
+
+element-text {
+    highlight: bold;
+}
+
+element-icon {
+    size: 0px;
+    border: 0px;
+}
+
+entry {
+    placeholder: "Execute";
+    blink: true;
+    expand: true;
+}

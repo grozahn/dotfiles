@@ -9,15 +9,22 @@ timeout = 1800 # seconds = 30 minutes
 
 [language.python]
 filetypes = ["python"]
-roots = ["__init__.py", "setup.py"]
+roots = ["requirements.txt", "setup.py", ".git", ".hg"]
 command = "pyls"
-
-[language.c_cpp]
-filetypes = ["c", "cpp"]
-roots = ["compile_flags.txt", "compile_commands.json"]
-command = "clangd"
+offset_encoding = "utf-8"
 
 [language.go]
 filetypes = ["go"]
-roots = ["go.mod", ".git", ".hg"]
+roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
 command = "gopls"
+offset_encoding = "utf-8"
+
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml"]
+command = "rls"
+
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = ["compile_flags.txt", "compile_commands.json", ".clangd"]
+command = "clangd"

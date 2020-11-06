@@ -1,0 +1,24 @@
+configuration {
+    theme: "~/.config/rofi/themes/tomorrow-night.rasi";
+    font: "Noto Sans 11";
+    show-icons: true;
+    sidebar-mode: false;
+    matching: "normal";
+    drun-display-format: "{name} ";
+    window-format: "[{w}] {t}";
+    display-drun: "Applications";
+    display-run: "Exec";
+    display-combi: "Combi";
+    display-window: "Windows";
+    combi-hide-mode-prefix: true;
+    combi-modi: [drun, run];
+    terminal: "gnome-terminal";
+}
+
+window {
+    width: 45%;
+}
+
+prompt {
+    enabled: false;
+}

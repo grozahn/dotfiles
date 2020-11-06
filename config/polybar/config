@@ -218,4 +218,5 @@
     content-padding = 1
     content-foreground = ${colors.foreground}
 
-    click-left = "rofi -show combi -modi combi"
+    click-left = "rofi -show drun -modi drun -config ~/.config/rofi/modes/drun.rasi"
+    click-right = "rofi -show run -modi run -config ~/.config/rofi/modes/run.rasi"

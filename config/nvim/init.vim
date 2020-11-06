@@ -21,7 +21,7 @@ Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'raimondi/delimitmate'
 
-" Highlight
+" Syntax highlighters
 " Plug 'kelwin/vim-smali'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
@@ -69,7 +69,8 @@ endfunction
 set noswapfile
 set nobackup
 set signcolumn=yes
-" set foldmethod=marker
+set foldmethod=marker
+set updatetime=1000
 
 set listchars=tab:▏\ ,eol:\ ,extends:,precedes:,space:\ ,trail:⋅
 set list
@@ -133,7 +134,7 @@ let g:LanguageClient_serverCommands = {
     \ 'go':     ['gopls'],
     \ 'cpp':    ['clangd'],
     \ 'c':      ['clangd'],
-\ }
+    \ }
 
 nmap <F5> :call LanguageClient_contextMenu()<CR>
 nmap <silent> \n :call LanguageClient#textDocument_rename()<CR>
@@ -141,6 +142,11 @@ nmap <silent> \a :call LanguageClient#textDocument_hover()<CR>
 nmap <silent> \d :call LanguageClient#textDocument_definition()<CR>
 nmap <silent> \r :call LanguageClient#textDocument_references()<CR>
 nmap <silent> \s :call LanguageClient#textDocument_documentSymbol()<CR>
+
+augroup lsp_aucommands
+    au!
+    au CursorHold * call LanguageClient_textDocument_hover()
+augroup END
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -165,7 +171,7 @@ let g:fzf_colors = {
     \ 'marker':  ['fg', 'Keyword'],
     \ 'spinner': ['fg', 'Label'],
     \ 'header':  ['fg', 'Comment']
-\ }
+    \ }
 
 let g:fzf_tags_command = 'ctags -R'
 

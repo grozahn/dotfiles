@@ -1,0 +1,32 @@
+@import "config.rasi"
+
+element {
+    orientation: vertical;
+}
+
+element-icon {
+    size: 50px;
+    border: 0px;
+}
+
+element-text {
+    highlight: bold;
+    expand: true;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    margin: 5px 10px 0px 10px;
+}
+
+listview {
+    layout: vertical;
+    lines: 5;
+    columns: 4;
+    cycle: true;
+    scrollbar: false;
+}
+
+entry {
+    placeholder: "Launch";
+    blink: true;
+    expand: true;
+}

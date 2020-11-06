@@ -1,0 +1,12 @@
+@import "config.rasi"
+@import "drun.rasi"
+
+listview {
+    layout: vertical;
+    lines: 1;
+    column: 5;
+}
+
+inputbar {
+    enabled: false;
+}
