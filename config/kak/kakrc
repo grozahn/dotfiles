@@ -7,18 +7,20 @@ plug "ul/kak-lsp" do %{
     cargo install --force --path .
 } config %{
     define-command lsp-restart %{ lsp-stop; lsp-start }
+
     set-option global lsp_diagnostic_line_error_sign "!"
     set-option global lsp_diagnostic_line_warning_sign "?"
-    hook global WinSetOption filetype=(c|cpp|go|python) %{
+
+    hook global WinSetOption filetype=(c|cpp|go|python|rust) %{
         map window user "l" ": enter-user-mode lsp<ret>" -docstring "LSP mode"
         lsp-enable-window
 
         # Language Client mappings
-        map global normal '<c-k>' ': lsp-hover<ret>'
-        map global insert '<c-k>' '<a-;>: lsp-hover<ret>'
+        map global normal "<c-k>" ": lsp-hover<ret>"
+        map global insert "<c-k>" "<a-;>: lsp-hover<ret>"
 
         # lsp-auto settings
-        lsp-auto-hover-disable
+        lsp-auto-hover-enable
         lsp-auto-hover-insert-mode-disable
         lsp-auto-signature-help-enable
 
@@ -30,28 +32,30 @@ plug "ul/kak-lsp" do %{
 }
 
 plug "andreyorst/smarttab.kak" %{
+    set-option global tabstop 4
+    set-option global indentwidth 4
     set-option global softtabstop 4
 
-    hook global WinSetOption filetype=(python|kak|sh|lisp|markdown) expandtab
+    hook global WinSetOption filetype=(python|rust|kak|sh|markdown) expandtab
     hook global WinSetOption filetype=(go|makefile) noexpandtab
     hook global WinSetOption filetype=(c|cpp) smarttab
+}
+
+plug "andreyorst/fzf.kak" %{
+    map global normal <c-p> ":fzf-mode<ret>"
 }
 
 plug "andreyorst/pmanage.kak"
 
 plug "occivink/kakoune-gdb"
 
-# Indentation
-set-option global tabstop 4
-set-option global indentwidth 4
-
-# Default colorscheme
+# Colorscheme
+# tomorrow-night, dracula, solarized-light
 colorscheme tomorrow-night
-# colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{
-    add-highlighter global/numbers    number-lines -relative -hlcursor -separator ' '
+    add-highlighter global/numbers    number-lines -relative -hlcursor -separator " "
     add-highlighter global/matching   show-matching
     add-highlighter global/whitespace show-whitespaces -tab "▏" -lf " " -nbsp "⋅" -spc " "
     add-highlighter global/wrap       wrap -word -indent -marker ↪
@@ -59,56 +63,45 @@ hook global KakBegin .* %{
 
 # convert between snake_case and camelCase
 def to-camelcase %{
-    exec '`s[-_<space>]<ret>d~<a-i>w'
+    exec "`s[-_<space>]<ret>d~<a-i>w"
 }
 
 def to-snakecase %{
-    exec '<a-:><a-;>s-|[a-z][A-Z]<ret>;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`'
+    exec "<a-:><a-;>s-|[a-z][A-Z]<ret>;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`"
 }
 
 # Tmux integration
-define-command -override -docstring "split tmux vertically" \
+define-command -override -docstring "Split tmux vertically" \
 vsp -params .. -command-completion %{
     tmux-terminal-horizontal kak -c %val{session} -e "%arg{@}"
 }
 
-define-command -override  -docstring "split tmux horizontally" \
+define-command -override  -docstring "Split tmux horizontally" \
 sp -params .. -command-completion %{
     tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
 }
 
-define-command -override -docstring "create new tmux window" \
+define-command -override -docstring "Create new tmux window" \
 tabnew -params .. -command-completion %{
     tmux-terminal-window kak -c %val{session} -e "%arg{@}"
 }
 
-define-command -docstring 'Invoke fzf to open a file' -params 0 fzf-edit %{
-    evaluate-commands %sh{
-        if [ -z "${kak_client_env_TMUX}" ]; then
-            printf 'fail "client was not started under tmux"\n'
-        else
-            file="$(find . -type f |TMUX="${kak_client_env_TMUX}" fzf-tmux -d 15)"
-            if [ -n "$file" ]; then
-                printf 'edit "%s"\n' "$file"
-            fi
-        fi
-    }
-}
+# Generals
+set-option global idle_timeout 500
 
 # Mappings
-map global user s :b\ <tab> -docstring "Select buffer"
+map global user s :fzf-mode<ret>b -docstring "Select buffer"
 map global user d :buffer-next<ret> -docstring "Next buffer"
 map global user a :buffer-previous<ret> -docstring "Previous buffer"
 map global user q :delete-buffer!<ret> -docstring "Delete buffer"
-map global user e :fzf-edit<ret> -docstring "Select file using Fuzzy finder"
 
 map global user m :man<ret> -docstring "Open Man page"
-map global user y '<a-|>xsel -ib<ret>' -docstring "Yank selection to system clipboard"
-map global user c '<a-|>wl-copy<ret>' -docstring "Yank selection to system clipboard (Wayland)"
 
-map global normal '#' :comment-line<ret>
-map global normal '@' :comment-block<ret>
+map global user y <a-|>xsel -ib<ret> -docstring "Yank to system clipboard"
+map global user c <a-|>wl-copy<ret> -docstring "Yank to system clipboard (Wayland)"
 
+map global normal "#" :comment-line<ret>
+map global normal "@" :comment-block<ret>
 
 # Completion by Tab key
 hook global InsertCompletionShow .* %{map   window insert <tab> <c-n>; map   window insert <s-tab> <c-p>}

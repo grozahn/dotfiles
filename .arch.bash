@@ -20,5 +20,4 @@ alias kvncd='vncserver -kill'
 mvim() { $EDITOR -u $HOME/.config/nvim/min.vim $@; }
 
 # Import Fuzzy Finder scripts
-[ -d /usr/share/fzf ] && source /usr/share/fzf/completion.bash
 [ -d /usr/share/fzf ] && source /usr/share/fzf/key-bindings.bash

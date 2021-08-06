@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Simple wrapper around mpv
+# Used for Search Actions in Xfce4 Whisker Menu
+
+case $1 in
+    --novideo | -nv)   # action: >a ( audio )
+        ARGS="--no-video --loop"
+    ;;
+    --noborder | -nb)  # action: >b ( borderless )
+        ARGS="--no-border --loop"
+    ;;
+    --float | -f)      # action: >f ( float )
+        ARGS="--geometry=30%x30%-2%-3% --no-border --ontop --loop"
+    ;;
+    *)
+        ARGS="$1"
+    ;;
+esac
+
+[ -z $2 ] && \
+	ARGS="--player-operation-mode=pseudo-gui ${ARGS}" || ARGS="${ARGS} ${2}"
+
+
+mpv ${ARGS}

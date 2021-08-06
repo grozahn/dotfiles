@@ -1,8 +1,8 @@
 set editing-mode vi
 
 set show-mode-in-prompt on
-set vi-ins-mode-string "I "
-set vi-cmd-mode-string "N "
+set vi-ins-mode-string "\1\e[6 q\2"
+set vi-cmd-mode-string "\1\e[2 q\2"
 
 # in vi-command mode
 set keymap vi-command
@@ -11,3 +11,4 @@ Control-l: clear-screen
 # in vi-insert mode
 set keymap vi-insert
 Control-l: clear-screen
+"\C-h": backward-kill-word

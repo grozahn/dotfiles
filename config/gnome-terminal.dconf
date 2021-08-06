@@ -1,0 +1,66 @@
+[legacy]
+confirm-close=false
+default-show-menubar=false
+headerbar=@mb true
+menu-accelerator-enabled=false
+
+[legacy/profiles:]
+default='35ce4313-f0af-4f01-9ee7-2b36f5631231'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '5b7fc040-135b-4882-a587-1454ebed5213', '35ce4313-f0af-4f01-9ee7-2b36f5631231']
+
+[legacy/profiles:/:35ce4313-f0af-4f01-9ee7-2b36f5631231]
+background-color='rgb(29,31,33)'
+bold-color-same-as-fg=true
+bold-is-bright=true
+cursor-blink-mode='on'
+cursor-colors-set=false
+cursor-shape='ibeam'
+custom-command='/usr/bin/fish'
+font='Cascadia Code 11'
+foreground-color='rgb(197,200,198)'
+login-shell=false
+palette=['rgb(29,31,33)', 'rgb(204,102,102)', 'rgb(181,189,104)', 'rgb(240,198,116)', 'rgb(129,162,190)', 'rgb(178,148,187)', 'rgb(138,190,183)', 'rgb(197,200,198)', 'rgb(150,152,150)', 'rgb(204,102,102)', 'rgb(181,189,104)', 'rgb(240,198,116)', 'rgb(129,162,190)', 'rgb(178,148,187)', 'rgb(138,190,183)', 'rgb(236,235,236)']
+scrollback-unlimited=true
+scrollbar-policy='never'
+title-mode='after'
+use-custom-command=false
+use-system-font=false
+use-theme-colors=false
+visible-name='Tomorrow'
+
+[legacy/profiles:/:5b7fc040-135b-4882-a587-1454ebed5213]
+background-color='#1d2021'
+bold-color='#ebdbb2'
+bold-is-bright=true
+cursor-background-color='#adadad'
+cursor-blink-mode='on'
+cursor-colors-set=false
+cursor-foreground-color='#1d2021'
+cursor-shape='ibeam'
+custom-command='/usr/bin/fish'
+font='Hack 10'
+foreground-color='#ebdbb2'
+login-shell=true
+palette=['#282828', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984', '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2']
+scrollbar-policy='never'
+use-custom-command=true
+use-system-font=false
+use-theme-colors=false
+visible-name='Gruvbox'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+audible-bell=false
+background-color='rgb(255,255,255)'
+bold-color='#d8d8d8'
+cursor-blink-mode='on'
+cursor-shape='ibeam'
+custom-command='/usr/bin/fish'
+font='Hack 10'
+foreground-color='rgb(0,0,0)'
+login-shell=false
+palette=['#181818', '#ab4642', '#a1b56c', '#f7ca88', '#7cafc2', '#ba8baf', '#86c1b9', '#d8d8d8', '#585858', '#dc9656', '#282828', '#383838', '#b8b8b8', '#e8e8e8', '#a16946', '#f8f8f8']
+scrollbar-policy='never'
+use-custom-command=false
+use-system-font=false
+use-theme-colors=false
+visible-name='White'

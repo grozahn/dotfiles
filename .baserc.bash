@@ -1,52 +1,113 @@
-export TERM='xterm-256color'
-
-# Set history size
-export HISTSIZE=50000
-export HISTFILESIZE=
-
 # Define prompt themes
 case "$BASH_THEME" in
     theunraveler)
         export PS1='\[\e[35m\][\W] \[\e[0m\]' ;;
     gentoo)
-        export PS1='\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;34m\]\W \$ \[\e[0m\]' ;;
-    arrow)
-        export PS1='\[\e[1;32m\]-> \[\e[0m\]' ;;
+        export PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\W \$ \[\e[0m\]' ;;
+    agnoster)
+        export PS1='\[\e[7;34m\] \W \[\e[0;34m\] \[\e[0m\]' ;;
     minimal)
         export PS1='\[\e[1;34m\] \W \[\e[0m\]' ;;
 esac
 
-# Set default environment variables
+###
+# Exports
+###
+export TERM='xterm-256color'
 export PAGER='less'
 export EDITOR='vi'
 
-alias fetch='neofetch --ascii_distro netbsd'
-alias shrc='$EDITOR $HOME/.bashrc'
+# Set bash history size
+export HISTSIZE=50000
+export HISTFILESIZE=
+
+###
+# Aliases
+###
+
+# Dumb things
+alias ..='cd ..'
+alias ...='cd ../..'
 alias ls='ls --color=tty'
-alias ftpd='python -m pyftpdlib -w'
-alias kns='kak -s $(basename $PWD)'  # kakoune new session
-alias tns='tmux new-session -s $(basename $PWD)'  # tmux new session
-alias vim='nvim'
 alias nv='nvim'
+alias shrc='$EDITOR $HOME/.bashrc'
+alias fetch='neofetch --ascii_distro netbsd'
 
-# Kakoune attach
-kat() { if [[ $(kak -l) != '' ]]; then kak -c $(kak -l | fzf) $@; else kak $@; fi }
+# Wrappers using fzf
+alias kns='kak -s $(basename $PWD)'  # kakoune new session
 
-# Convert ASCII string to HEX in reverse (Little-Endian) order
-a2hex() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\\x/g'; }
+# Python stuff
+alias pyftpd='python -m pyftpdlib -w'
+alias pyhttpd='python -m http.server 8080'
+alias py='python3'
+alias py2='python2'
+alias ipy='ipython'
 
-# Search for specific string in files
-insearch() { grep -rnI $2 -e $1 | fzf; }
+###
+# User defined functions
+###
 
-# Tmux session chooser
-tms() {
-    if [[ $(tmux ls | wc -l) -gt 1 ]]; then
-        tmux attach -t $(tmux ls | fzf | sed 's/:.*$//g')
-    else
-        tmux attach || tmux new
+# Play mjpeg stream from ScreenStream server running on smartphone
+scrplay() { # (host: $1, port=8080: $2)
+    [ -z "$1" ] && {
+        echo "Usage: scrplay <host> [port]"
+        return 1
+    }
+
+    [ -n "$2" ] && port="$2" || port=8080
+
+    mpv "http://${1}:${port}/stream.mjpeg"
+}
+
+# (fzf) Open file in $EDITOR
+edf() {
+    $EDITOR $(find $1 -type f | fzf +s)
+}
+
+# Clone git repo
+clone() {
+    url=$2
+    if [ $1 ] && [ -n $2 ]; then
+        case $1 in
+        'gl')
+            url="https://gitlab.com/$url" ;;
+        'gh')
+            url="https://github.com/$url.git" ;;
+        *)
+            echo 'Wrong host keyword: use gh (github) or gl (gitlab)'
+            return 1
+        esac
+        git clone $url
     fi
 }
 
+# Attach to Kakoune session
+kat() {
+    [[ -n $(kak -l) ]] && kak -c $(kak -l | fzf) $@ || kak $@
+}
+
+# Convert ASCII string to HEX in reverse order
+atox() { echo -n "$1" | rev | od -A n -t x1 | sed 's/ /\\\x/g'; }
+
+# Search for specific string in files
+ingrep() { grep -rnI $2 -e $1 | fzf; }
+
+# Create new named tmux session
+tns() { # (session: $1)
+    [ -n "${1}" ] && session="${1}" || session="$(basename ${PWD})"
+    tmux new-session -s "${session}"
+}
+
+# Attach to tmux session
+tat() {
+    [ $(tmux ls | wc -l) -gt 1 ] && {
+        tmux attach -t $(tmux ls | fzf | sed 's/:.*$//g')
+    } || {
+        tmux attach || tns "${@}"
+    }
+}
+
+# Set proxy variables
 use_proxy() {
     export http_proxy=$1
     export https_proxy=$http_proxy
@@ -56,8 +117,8 @@ use_proxy() {
 }
 
 # Pack archive
-pk () {
-    if [ $1 ] ; then
+pk() {
+    if [ $1 ]; then
         case $1 in
             tbz) tar cjvf $2.tar.bz2 $2     ;;
             tgz) tar czvf $2.tar.gz  $2     ;;
@@ -66,16 +127,14 @@ pk () {
             gz)  gzip -c -9 -n $2 > $2.gz   ;;
             zip) zip -r $2.zip $2           ;;
             7z)  7z a $2.7z $2              ;;
-            *)   echo "'$1' can not be extracted with pk()" ;;
+            *)   echo "'$1' is wrong file type" ;;
         esac
-    else
-        echo "'$1' is not valid file"
     fi
 }
 
 # Extract archive
-ex () {
-    if [ -f $1 ] ; then
+ex() {
+    if [ -f $1 ]; then
         case $1 in
             *.tar.bz2) tar xvjf $1   ;;
             *.tar.gz)  tar xvzf $1   ;;

@@ -13,7 +13,11 @@ wallpaper_selection() {
 case $1 in
     'set')
         if [ $# -eq 2 ] && [ -f "$2" ]; then
-            WAL="$PWD/$2"
+            if [ ${2:0:1} == "/" ]; then
+                WAL="$2"
+            else
+                WAL="$PWD/$2"
+            fi
         else
             WAL=`wallpaper_selection`
             [ $? -ne 0 ] && \

@@ -1,4 +1,5 @@
 # Indentation
+set-option global softtabstop 4
 set-option global tabstop 4
 set-option global indentwidth 4
 
@@ -17,9 +18,9 @@ def -hidden insert-bs %{
     }
 }
 
-# Default colorscheme
+# Colorscheme
+# tomorrow-night, dracula, solarized-light
 colorscheme tomorrow-night
-# colorscheme base16-gruvbox-dark-hard
 
 # Highlighters
 hook global KakBegin .* %{
@@ -45,6 +46,7 @@ map global user a :buffer-previous<ret> -docstring "Previous buffer"
 map global user q :delete-buffer!<ret> -docstring "Delete buffer"
 
 map global user m :man<ret> -docstring "Open Man page"
+
 map global user y '<a-|>xsel -ib<ret>' -docstring "Yank selection to system clipboard"
 map global user c '<a-|>wl-copy<ret>' -docstring "Yank selection to system clipboard (Wayland)"
 

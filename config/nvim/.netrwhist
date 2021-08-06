@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/zaurix/.config'
+let g:netrw_dirhist_5='/home/zaurix/.themes/Orchis-dark-compact/gtk-3.0'
+let g:netrw_dirhist_4='/home/zaurix/.config/i3/colors'
+let g:netrw_dirhist_3='/home/zaurix/.local/share/plank/themes'
+let g:netrw_dirhist_2='/home/zaurix/.config/kitty'
+let g:netrw_dirhist_1='/home/zaurix'
+let g:netrw_dirhist_0='/home/zaurix/.config/nvim/lua/lsp'
+let g:netrw_dirhist_9='/home/zaurix/.config/nvim/lua'
+let g:netrw_dirhist_8='/home/zaurix/.config/nvim'
+let g:netrw_dirhist_7='/home/zaurix/.config/nvim/lua/lsp'
